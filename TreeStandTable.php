@@ -35,6 +35,7 @@ if (!$r) {
 }
 
 // Display the table
+echo "<h1> stand table </h1>";
 echo "<table border='1'>";
 echo "<tr><th>spgroup</th>";
 foreach ($diameter_ranges as $range) {
