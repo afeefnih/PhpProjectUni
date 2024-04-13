@@ -7,6 +7,8 @@ $NumDclass = 4;
 $TreePerha = array_fill(0, $NoGroupSpecies, array_fill(0, $NumDclass, 0)); // Assuming TreePerha is a 2D array initialized elsewhere
 $ListSpecies = array_fill(0, 400, array_fill(0, 400, 0)); // Assuming ListSpecies is a 2D array initialized elsewhere
 
+echo"Tree Perha Stand Table";
+
 echo "<table border='1'>";
 echo "<tr><th>No.</th><th>Block</th><th>Group Species</th><th>Class</th><th>X</th><th>Y</th><th>Species</th><th>Diameter</th><th>Height</th></tr>";
 
