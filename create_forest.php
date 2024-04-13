@@ -89,16 +89,16 @@ for ($IX = 1; $IX <= $NoBlockX; $IX++) {
                 echo "<tr><td>$count</td><td>($blockx, $blocky)</td><td>$I</td><td>$J</td><td>$x</td><td>$y</td><td>$species</td><td>$diameter</td><td>$height</td></tr>";
                
 
-$q = "INSERT INTO newforestori (BlockX, BlockY, species, Diameter,DiameterClass, StemHeight, X, Y,spgroup) VALUES ('$blockx', '$blocky', '$species', '$diameter','$J', '$height', '$x', '$y','$I')";
-                $r = mysqli_query($dbc, $q);
-                if (!$r) {
-                    die('Error: ' . mysqli_error($dbc));
-                }
+#$q = "INSERT INTO newforestori (BlockX, BlockY, species, Diameter,DiameterClass, StemHeight, X, Y,spgroup) VALUES ('$blockx', '$blocky', '$species', '$diameter','$J', '$height', '$x', '$y','$I')";
+#                $r = mysqli_query($dbc, $q);
+#                if (!$r) {
+ #                   die('Error: ' . mysqli_error($dbc));
+ #               }
                 
-                $count++; // Increment counter
+  #              $count++; // Increment counter
                
-            }
-        }
+       }
+      }
     }
 }
 
