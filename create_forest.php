@@ -1,13 +1,25 @@
 <?php
 
+DEFINE ('DB_USER', 'root');
+DEFINE ('DB_PASSWORD', '');
+DEFINE ('DB_HOST', 'localhost');
+DEFINE ('DB_NAME', 'tree');
+
+
+// Make the connection:
+$dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) OR die ('Could not connect to MySQL: ' . mysqli_connect_error() );
+
+// Set the encoding...
+mysqli_set_charset($dbc, 'utf8');
+
+
+
 $NoBlockX = 10;
 $NoBlockY = 10;
 $NoGroupSpecies = 7;
 $NumDclass = 4;
 $TreePerha = array_fill(0, $NoGroupSpecies, array_fill(0, $NumDclass, 0)); // Assuming TreePerha is a 2D array initialized elsewhere
 $ListSpecies = array_fill(0, 400, array_fill(0, 400, 0)); // Assuming ListSpecies is a 2D array initialized elsewhere
-
-echo"Tree Perha Stand Table";
 
 echo "<table border='1'>";
 echo "<tr><th>No.</th><th>Block</th><th>Group Species</th><th>Class</th><th>X</th><th>Y</th><th>Species</th><th>Diameter</th><th>Height</th></tr>";
@@ -16,6 +28,8 @@ $count = 1; // Initialize counter
 
 for ($IX = 1; $IX <= $NoBlockX; $IX++) {
     for ($JY = 1; $JY <= $NoBlockY; $JY++) {
+
+
         $blockx = $IX;
         $blocky = $JY;
 
@@ -73,11 +87,21 @@ for ($IX = 1; $IX <= $NoBlockX; $IX++) {
 
                 // Output as table rows with numbering
                 echo "<tr><td>$count</td><td>($blockx, $blocky)</td><td>$I</td><td>$J</td><td>$x</td><td>$y</td><td>$species</td><td>$diameter</td><td>$height</td></tr>";
+               
+
+$q = "INSERT INTO newforestori (BlockX, BlockY, species, Diameter,DiameterClass, StemHeight, X, Y,spgroup) VALUES ('$blockx', '$blocky', '$species', '$diameter','$J', '$height', '$x', '$y','$I')";
+                $r = mysqli_query($dbc, $q);
+                if (!$r) {
+                    die('Error: ' . mysqli_error($dbc));
+                }
+                
                 $count++; // Increment counter
+               
             }
         }
     }
 }
+
 
 echo "</table>";
 
