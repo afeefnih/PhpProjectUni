@@ -208,7 +208,7 @@ echo "<td>$sumsp1[0]</td>";
 echo "</tr>";
 echo "<tr>";
 echo "<td>group 2</td>";
-echo "<td>mersawa</td>";
+echo "<td>keruing</td>";
 echo "<td> $spgroup2[0]</td>";
 echo "<td> $spgroup2[1]</td>";
 echo "<td> $spgroup2[2]</td>";
@@ -218,7 +218,8 @@ echo "<td>$sumsp1[1]</td>";
 echo "</tr>";
 echo "<tr>";
 echo "<td>group 3</td>";
-echo "<td>mersawa</td>";
+echo "<td>Dip commercial
+</td>";
 echo "<td> $spgroup3[0]</td>";
 echo "<td> $spgroup3[1]</td>";
 echo "<td> $spgroup3[2]</td>";
@@ -228,7 +229,8 @@ echo "<td>$sumsp1[2]</td>";
 echo "</tr>";
 echo "<tr>";
 echo "<td>group 4</td>";
-echo "<td>mersawa</td>";
+echo "<td>Dip Non Commercial
+</td>";
 echo "<td> $spgroup4[0]</td>";
 echo "<td> $spgroup4[1]</td>";
 echo "<td> $spgroup4[2]</td>";
@@ -238,7 +240,8 @@ echo "<td>$sumsp1[3]</td>";
 echo "</tr>";
 echo "<tr>";
 echo "<td>group 5</td>";
-echo "<td>mersawa</td>";
+echo "<td>NonDip commercial
+</td>";
 echo "<td> $spgroup5[0]</td>";
 echo "<td> $spgroup5[1]</td>";
 echo "<td> $spgroup5[2]</td>";
@@ -248,7 +251,8 @@ echo "<td>$sumsp1[4]</td>";
 echo "</tr>";
 echo "<tr>";
 echo "<td>group 6</td>";
-echo "<td>mersawa</td>";
+echo "<td>NonDip Non Commercial
+</td>";
 echo "<td> $spgroup6[0]</td>";
 echo "<td> $spgroup6[1]</td>";
 echo "<td> $spgroup6[2]</td>";
@@ -258,7 +262,8 @@ echo "<td>$sumsp1[5]</td>";
 echo "</tr>";
 echo "<tr>";
 echo "<td>group 7</td>";
-echo "<td>mersawa</td>";
+echo "<td>Others
+</td>";
 echo "<td> $spgroup7[0]</td>";
 echo "<td> $spgroup7[1]</td>";
 echo "<td> $spgroup7[2]</td>";
