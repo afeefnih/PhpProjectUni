@@ -76,7 +76,7 @@ for ($IX = 1; $IX <= $NoBlockX; $IX++) {
                 } elseif ($J == 4) {
                     $height1 = rand(1500, 4000) / 100;
                 } elseif ($J == 5) {
-                    $height1 = rand(1500, 4000);
+                    $height1 = rand(4000, 10000)/100;
                 }
                 $height = $height1;
 
@@ -90,13 +90,13 @@ for ($IX = 1; $IX <= $NoBlockX; $IX++) {
                
 #--code to store data into database--
                 
-#$q = "INSERT INTO newforestori (BlockX, BlockY, species, Diameter,DiameterClass, StemHeight, X, Y,spgroup) VALUES ('$blockx', '$blocky', '$species', '$diameter','$J', '$height', '$x', '$y','$I')";
-#                $r = mysqli_query($dbc, $q);
-#                if (!$r) {
-#                   die('Error: ' . mysqli_error($dbc));
-#               }
+$q = "INSERT INTO newforestori (BlockX, BlockY, species, Diameter,DiameterClass, StemHeight, X, Y,spgroup) VALUES ('$blockx', '$blocky', '$species', '$diameter','$J', '$height', '$x', '$y','$I')";
+               $r = mysqli_query($dbc, $q);
+               if (!$r) {
+                  die('Error: ' . mysqli_error($dbc));
+              }
                 
-#              $count++; // Increment counter
+             $count++; // Increment counter
                
        }
       }
