@@ -19,7 +19,7 @@ $NoBlockY = 10;
 $NoGroupSpecies = 7;
 $NumDclass = 5;
 $TreePerha = array_fill(0, $NoGroupSpecies, array_fill(0, $NumDclass, 0)); // Assuming TreePerha is a 2D array initialized elsewhere
-$ListSpecies = array_fill(0, 319, array_fill(0, 319, 0)); // Assuming ListSpecies is a 2D array initialized elsewhere
+$ListSpecies = array_fill(0, 318, array_fill(0, 318, 0)); // Assuming ListSpecies is a 2D array initialized elsewhere
 
 echo "<table border='1'>";
 echo "<tr><th>No.</th><th>Block</th><th>Group Species</th><th>Class</th><th>X</th><th>Y</th><th>Species</th><th>Diameter</th><th>Height</th></tr>";
@@ -50,7 +50,7 @@ for ($IX = 1; $IX <= $NoBlockX; $IX++) {
                 } elseif ($I == 6) {
                     $SquenceSp = rand(151, 250);
                 } elseif ($I == 7) {
-                    $SquenceSp = rand(251, 400);
+                    $SquenceSp = rand(251, 318);
                 }
                 $species = $SquenceSp;
 

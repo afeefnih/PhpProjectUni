@@ -14,6 +14,7 @@ $diameter_ranges = array(
     array(15, 30),
     array(30, 45),
     array(45, 60),
+    array(60,250),
     // No upper limit for the last range
 );
 
@@ -24,7 +25,7 @@ $q = "SELECT
             SUM(CASE WHEN diameter > 15 AND diameter <= 30 THEN 1 ELSE 0 END) AS '15-30',
             SUM(CASE WHEN diameter > 30 AND diameter <= 45 THEN 1 ELSE 0 END) AS '30-45',
             SUM(CASE WHEN diameter > 45 AND diameter <= 60 THEN 1 ELSE 0 END) AS '45-60',
-            SUM(CASE WHEN diameter > 60 THEN 1 ELSE 0 END) AS '60+'
+            SUM(CASE WHEN diameter > 60 AND diameter <= 250 THEN 1 ELSE 0 END) AS '60+'
         FROM newforestori
         GROUP BY spgroup";
 
