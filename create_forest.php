@@ -133,11 +133,69 @@ if (!$result5) {
     die('Error executing query 5: ' . mysqli_error($dbc));
 }
 
-$sql6 = "UPDATE newforestori INNER JOIN speciesname ON speciesname.No = newforestori.species SET newforestori.species = speciesname.SPECODE";
+// Filter trees based on their quadrant
+$sql6 = "SELECT * FROM newforestori WHERE status_tree = 'Cut'";
 $result6 = mysqli_query($dbc, $sql6);
 if (!$result6) {
     die('Error executing query 6: ' . mysqli_error($dbc));
 }
+
+// Fetch and process the filtered data
+// Fetch and process the filtered data
+// Fetch and process the filtered data
+while ($row = mysqli_fetch_assoc($result6)) {
+    $x0 = $row['x'];
+    $y0 = $row['y'];
+    $cutAngle = $row['Cut_Angle'];
+
+    // Initialize y1 and y2
+    $y1 = 0;
+    $y2 = 0;
+
+    // Calculate y1 and y2 based on the cutting angle and quadrant
+    if ($cutAngle >= 0 && $cutAngle < 90) {
+        // Quadrant I: 0 - 90 degrees
+        $y1 = $y0 + ($x0 / tan(deg2rad(90 - $cutAngle + 1)));
+        $y2 = $y0 + ($x0 / tan(deg2rad(90 - $cutAngle - 1)));
+    } elseif ($cutAngle >= 90 && $cutAngle < 180) {
+        // Quadrant II: 90 - 180 degrees
+        $y1 = $y0 - ($x0 / tan(deg2rad($cutAngle - 90 + 1)));
+        $y2 = $y0 - ($x0 / tan(deg2rad($cutAngle - 90 - 1)));
+    } elseif ($cutAngle >= 180 && $cutAngle < 270) {
+        // Quadrant III: 180 - 270 degrees
+        $y1 = $y0 - ($x0 / tan(deg2rad(270 - $cutAngle + 1)));
+        $y2 = $y0 - ($x0 / tan(deg2rad(270 - $cutAngle - 1)));
+    } elseif ($cutAngle >= 270 && $cutAngle <= 360) {
+        // Quadrant IV: 270 - 360 degrees
+        $y1 = $y0 + ($x0 / tan(deg2rad($cutAngle - 270 + 1)));
+        $y2 = $y0 + ($x0 / tan(deg2rad($cutAngle - 270 - 1)));
+    }
+
+    // Count the potentially affected trees
+    $count_query = "SELECT COUNT(*) AS affected_count FROM newforestori WHERE status_tree != 'Cut' AND Y >= $y1 AND Y <= $y2";
+    $count_result = mysqli_query($dbc, $count_query);
+    if (!$count_result) {
+        die('Error executing count query: ' . mysqli_error($dbc));
+    }
+
+    $affected_count = mysqli_fetch_assoc($count_result)['affected_count'];
+
+    // Update the 'damage' column for the current cut tree
+    $update_query = "UPDATE newforestori SET damage = $affected_count WHERE Id = " . $row['Id']; // Assuming 'Id' is the primary key
+    $update_result = mysqli_query($dbc, $update_query);
+    if (!$update_result) {
+        die('Error updating damage column: ' . mysqli_error($dbc));
+    }
+}
+
+
+
+$sql7 = "UPDATE newforestori INNER JOIN speciesname ON speciesname.No = newforestori.species SET newforestori.species = speciesname.SPECODE";
+$result6 = mysqli_query($dbc, $sql6);
+if (!$result6) {
+    die('Error executing query 6: ' . mysqli_error($dbc));
+}
+
 
 echo "</table>";
 
