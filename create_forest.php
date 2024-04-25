@@ -120,19 +120,24 @@ $result3 = mysqli_query($dbc, $sql3);
 if (!$result3) {
     die('Error executing query 3: ' . mysqli_error($dbc));
 }
+
 $sql4 = "UPDATE newforestori SET status_tree = CASE WHEN spgroup IN (1, 2, 3, 5) AND Diameter > 45 THEN 'Cut' WHEN spgroup IN (1, 2, 3, 5) AND Diameter <= 45 THEN 'Keep' ELSE status_tree END";
 $result4 = mysqli_query($dbc, $sql4);
 if (!$result4) {
     die('Error executing query 4: ' . mysqli_error($dbc));
 }
 
-$sql5 = "UPDATE newforestori INNER JOIN speciesname ON speciesname.No = newforestori.species SET newforestori.species = speciesname.SPECODE";
+$sql5 = "UPDATE newforestori SET Cut_Angle = CASE WHEN status_tree = 'Cut' THEN FLOOR(RAND() * 360) + 1 ELSE NULL END";
 $result5 = mysqli_query($dbc, $sql5);
 if (!$result5) {
     die('Error executing query 5: ' . mysqli_error($dbc));
 }
 
-
+$sql6 = "UPDATE newforestori INNER JOIN speciesname ON speciesname.No = newforestori.species SET newforestori.species = speciesname.SPECODE";
+$result6 = mysqli_query($dbc, $sql6);
+if (!$result6) {
+    die('Error executing query 6: ' . mysqli_error($dbc));
+}
 
 echo "</table>";
 
