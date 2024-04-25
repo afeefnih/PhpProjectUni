@@ -188,13 +188,6 @@ while ($row = mysqli_fetch_assoc($r)) {
     $total = array_sum($sumsp1);
 
 
-
-
-
-
-
-
-
 echo "<tr>";
 echo "<td>group 1</td>";
 echo "<td>mersawa</td>";

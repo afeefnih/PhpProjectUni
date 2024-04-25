@@ -103,6 +103,36 @@ $q = "INSERT INTO newforestori (BlockX, BlockY, species, Diameter,DiameterClass,
     }
 }
 
+$sql1 = "UPDATE newforestori INNER JOIN speciesname ON newforestori.species = speciesname.No SET newforestori.species = speciesname.No";
+$result1 = mysqli_query($dbc, $sql1);
+if (!$result1) {
+    die('Error executing query 1: ' . mysqli_error($dbc));
+}
+
+$sql2 = "UPDATE newforestori SET Volume = 3.142 * POW((Diameter / 200), 2) * StemHeight * 0.50";
+$result2 = mysqli_query($dbc, $sql2);
+if (!$result2) {
+    die('Error executing query 2: ' . mysqli_error($dbc));
+}
+
+$sql3 = "UPDATE newforestori SET TreeNum = CONCAT('T', LPAD(BlockX, 2, '0'), LPAD(BlockY, 2, '0'), LPAD(x, 2, '0'), LPAD(y, 2, '0'))";
+$result3 = mysqli_query($dbc, $sql3);
+if (!$result3) {
+    die('Error executing query 3: ' . mysqli_error($dbc));
+}
+$sql4 = "UPDATE newforestori SET status_tree = CASE WHEN spgroup IN (1, 2, 3, 5) AND Diameter > 45 THEN 'Cut' WHEN spgroup IN (1, 2, 3, 5) AND Diameter <= 45 THEN 'Keep' ELSE status_tree END";
+$result4 = mysqli_query($dbc, $sql4);
+if (!$result4) {
+    die('Error executing query 4: ' . mysqli_error($dbc));
+}
+
+$sql5 = "UPDATE newforestori INNER JOIN speciesname ON speciesname.No = newforestori.species SET newforestori.species = speciesname.SPECODE";
+$result5 = mysqli_query($dbc, $sql5);
+if (!$result5) {
+    die('Error executing query 5: ' . mysqli_error($dbc));
+}
+
+
 
 echo "</table>";
 
