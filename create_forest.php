@@ -147,52 +147,83 @@ while ($row = mysqli_fetch_assoc($result6)) {
     $x0 = $row['x'];
     $y0 = $row['y'];
     $cutAngle = $row['Cut_Angle'];
+    $stemHeight = $row['StemHeight'];
 
-    // Initialize y1 and y2
-    $y1 = 0;
-    $y2 = 0;
+    // Define additional buffer beyond the stem height
+    $buffer = 10;  // 5 + 5 as described
 
-    // Calculate y1 and y2 based on the cutting angle and quadrant
+    // Initialize the query to count affected trees
+    $count_query = "";
+
+    // Calculate the range for x and y based on the cutting angle
     if ($cutAngle >= 0 && $cutAngle < 90) {
         // Quadrant I: 0 - 90 degrees
-        $y1 = $y0 + ($x0 / tan(deg2rad(90 - $cutAngle + 1)));
-        $y2 = $y0 + ($x0 / tan(deg2rad(90 - $cutAngle - 1)));
+        if ($cutAngle >= 0 && $cutAngle < 90) {
+            // Quadrant I: 0 - 90 degrees
+            $x_upper = $x0 + $stemHeight + $buffer;
+        
+            // Calculate y bounds based on the cut angle
+            $y1_lower = $y0 + ($x_upper - $x0) / tan(deg2rad($cutAngle + 1));  // y at x_upper for angle θ+1
+            $y2_lower = $y0 + ($x_upper - $x0) / tan(deg2rad($cutAngle - 1));  // y at x_upper for angle θ-1
+        
+            $y_upper = max($y1_lower, $y2_lower) + $buffer; // To ensure coverage of the entire possible damage range
+            $y_lower = min($y1_lower, $y2_lower) - $buffer;
+        
+            // Now, adjust the SQL query to use these new y bounds
+            $count_query = "SELECT COUNT(*) AS affected_count FROM newforestori WHERE status_tree != 'Cut' AND x > $x0 AND x < $x_upper AND y > $y_lower AND y < $y_upper";
+        }
     } elseif ($cutAngle >= 90 && $cutAngle < 180) {
         // Quadrant II: 90 - 180 degrees
-        $y1 = $y0 - ($x0 / tan(deg2rad($cutAngle - 90 + 1)));
-        $y2 = $y0 - ($x0 / tan(deg2rad($cutAngle - 90 - 1)));
+        $theta = 180 - $cutAngle;
+        $x_lower = $x0 - ($stemHeight + $buffer);
+        $y1_upper = $y0 - ($x0 - $x_lower) / tan(deg2rad($theta + 1));
+        $y2_upper = $y0 - ($x0 - $x_lower) / tan(deg2rad($theta - 1));
+        $y_upper = $y0 + $buffer;
+        $y_lower = min($y1_upper, $y2_upper) - $buffer;
+        $count_query = "SELECT COUNT(*) AS affected_count FROM newforestori WHERE status_tree != 'Cut' AND x < $x0 AND x > $x_lower AND y > $y_lower AND y < $y_upper";
     } elseif ($cutAngle >= 180 && $cutAngle < 270) {
         // Quadrant III: 180 - 270 degrees
-        $y1 = $y0 - ($x0 / tan(deg2rad(270 - $cutAngle + 1)));
-        $y2 = $y0 - ($x0 / tan(deg2rad(270 - $cutAngle - 1)));
-    } elseif ($cutAngle >= 270 && $cutAngle <= 360) {
+        $theta = $cutAngle - 180;
+        $x_lower = $x0 - ($stemHeight + $buffer);
+        $y1_upper = $y0 - ($x0 - $x_lower) / tan(deg2rad($theta + 1));
+        $y2_upper = $y0 - ($x0 - $x_lower) / tan(deg2rad($theta - 1));
+        $y_upper = max($y1_upper, $y2_upper) + $buffer;
+        $y_lower = $y0 - $buffer;
+        $count_query = "SELECT COUNT(*) AS affected_count FROM newforestori WHERE status_tree != 'Cut' AND x < $x0 AND x > $x_lower AND y > $y_lower AND y < $y_upper";
+    } elseif ($cutAngle >= 270 && $cutAngle < 360) {
         // Quadrant IV: 270 - 360 degrees
-        $y1 = $y0 + ($x0 / tan(deg2rad($cutAngle - 270 + 1)));
-        $y2 = $y0 + ($x0 / tan(deg2rad($cutAngle - 270 - 1)));
+        $theta = 360 - $cutAngle;
+        $x_upper = $x0 + $stemHeight + $buffer;
+        $y1_lower = $y0 + ($x_upper - $x0) / tan(deg2rad($theta + 1));
+        $y2_lower = $y0 + ($x_upper - $x0) / tan(deg2rad($theta - 1));
+        $y_upper = $y0 + $buffer;
+        $y_lower = min($y1_lower, $y2_lower) - $buffer;
+        $count_query = "SELECT COUNT(*) AS affected_count FROM newforestori WHERE status_tree != 'Cut' AND x > $x0 AND x < $x_upper AND y > $y_lower AND y < $y_upper";
     }
 
-    // Count the potentially affected trees
-    $count_query = "SELECT COUNT(*) AS affected_count FROM newforestori WHERE status_tree != 'Cut' AND Y >= $y1 AND Y <= $y2";
-    $count_result = mysqli_query($dbc, $count_query);
-    if (!$count_result) {
-        die('Error executing count query: ' . mysqli_error($dbc));
+    if (!empty($count_query)) {
+        $count_result = mysqli_query($dbc, $count_query);
+        if (!$count_result) {
+            die('Error executing count query: ' . mysqli_error($dbc));
+        }
+    
+        $affected_count = mysqli_fetch_assoc($count_result)['affected_count'];
+    
+        // Update the 'damage' column for the current cut tree by incrementing the existing damage count
+        $update_query = "UPDATE newforestori SET damage = damage + $affected_count WHERE Id = " . $row['Id']; // Assuming 'Id' is the primary key
+        $update_result = mysqli_query($dbc, $update_query);
+        if (!$update_result) {
+            die('Error updating damage column: ' . mysqli_error($dbc));
+        }
     }
-
-    $affected_count = mysqli_fetch_assoc($count_result)['affected_count'];
-
-    // Update the 'damage' column for the current cut tree
-    $update_query = "UPDATE newforestori SET damage = $affected_count WHERE Id = " . $row['Id']; // Assuming 'Id' is the primary key
-    $update_result = mysqli_query($dbc, $update_query);
-    if (!$update_result) {
-        die('Error updating damage column: ' . mysqli_error($dbc));
-    }
+    
 }
 
 
 
 $sql7 = "UPDATE newforestori INNER JOIN speciesname ON speciesname.No = newforestori.species SET newforestori.species = speciesname.SPECODE";
-$result6 = mysqli_query($dbc, $sql6);
-if (!$result6) {
+$result7 = mysqli_query($dbc, $sql7);
+if (!$result7) {
     die('Error executing query 6: ' . mysqli_error($dbc));
 }
 
