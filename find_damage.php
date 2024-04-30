@@ -1,10 +1,6 @@
-
-
 <?php
 
-
 echo "</table>";
-
 
 DEFINE ('DB_USER', 'root');
 DEFINE ('DB_PASSWORD', '');
@@ -36,7 +32,6 @@ while ($row = mysqli_fetch_assoc($result)) {
     $x0 = $row['x'];
     $y0 = $row['y'];
     $victimIds = [];
-    
 
     // Define additional buffer beyond the stem height
     $buffer = 10;  // 5 + 5 as described
@@ -65,17 +60,15 @@ while ($row = mysqli_fetch_assoc($result)) {
         }
 
         // Process the result set
-        while ($row1= mysqli_fetch_assoc($result1)) {
-            
-            $y1 = $y0 + ($x0 / tan(deg2rad(90 - $cutAngle + 1)));
-            $y2 = $y0 + ($x0 / tan(deg2rad(90 - $cutAngle - 1)));
+        while ($row1 = mysqli_fetch_assoc($result1)) {
+            $y1 = $y0 + ($x0 / tan(deg2rad( $cutAngle + 1)));
+            $y2 = $y0 + ($x0 / tan(deg2rad($cutAngle - 1)));
 
             $damage1 = "SELECT coordinate FROM newforestori WHERE status_tree != 'Cut' AND $y0 > $y1 AND $y0 < $y2" ;
             $damage_result1 = mysqli_query($dbc, $damage1);
 
-            while ($row1 = mysqli_fetch_assoc($damage_result)) {
-                $victimIds = $row1['coordinate'];
-
+            while ($row1 = mysqli_fetch_assoc($damage_result1)) {
+                $victimIds[] = $row1['coordinate'];
             }
         }
         mysqli_free_result($result1);
@@ -98,18 +91,16 @@ while ($row = mysqli_fetch_assoc($result)) {
 
         // Process the result set
         while ($row2 = mysqli_fetch_assoc($result2)) {
-
             $cutAngle = 180 - $cutAngle;
-            
-            $y1 = $y0 + ($x0 / tan(deg2rad(90 - $cutAngle + 1)));
-            $y2 = $y0 + ($x0 / tan(deg2rad(90 - $cutAngle - 1)));
+            $radian = deg2rad($cutAngle);
+            $y1 = $y0 + ($x0 / tan( $radian + 1));
+            $y2 = $y0 + ($x0 / tan( $radian - 1));
 
             $damage2 = "SELECT coordinate FROM newforestori WHERE status_tree != 'Cut' AND $y0 > $y1 AND $y0 < $y2" ;
             $damage_result2 = mysqli_query($dbc, $damage2);
 
             while ($row2 = mysqli_fetch_assoc($damage_result2)) {
-                $victimIds = $row2['coordinate'];
-
+                $victimIds[] = $row2['coordinate'];
             }
         }
 
@@ -135,17 +126,15 @@ while ($row = mysqli_fetch_assoc($result)) {
         // Process the result set
         while ($row3 = mysqli_fetch_assoc($result3)) {
             $cutAngle = 180 + $cutAngle;
-            $y1 = $y0 - ($x0 / tan(deg2rad($cutAngle - 90 + 1)));
-            $y2 = $y0 - ($x0 / tan(deg2rad($cutAngle - 90 - 1)));
+            $y1 = $y0 - ($x0 / tan(deg2rad($cutAngle  + 1)));
+            $y2 = $y0 - ($x0 / tan(deg2rad($cutAngle - 1)));
 
             $damage3 = "SELECT coordinate FROM newforestori WHERE status_tree != 'Cut' AND $y0 > $y1 AND $y0 < $y2" ;
             $damage_result3 = mysqli_query($dbc, $damage3);
 
             while ($row3 = mysqli_fetch_assoc($damage_result3)) {
-                $victimIds = $row3['coordinate'];
-
-
-        }
+                $victimIds[] = $row3['coordinate'];
+            }
         }
 
         // Free the result set
@@ -176,22 +165,22 @@ while ($row = mysqli_fetch_assoc($result)) {
             $damage_result4 = mysqli_query($dbc, $damage4);
 
             while ($row4 = mysqli_fetch_assoc($damage_result4)) {
-                $victimIds = $row4['coordinate'];
-
-        }
+                $victimIds[] = $row4['coordinate'];
+            }
         }
 
         // Free the result set
         mysqli_free_result($result4);
     }
 
+    // Insert victim tree numbers into damagetree table
+    foreach ($victimIds as $victimId) {
+        $insert_query = "INSERT INTO damagetree (cut_tree, victim) VALUES ('$cutTreeId', '$victimId')";
+        $insert_result = mysqli_query($dbc, $insert_query);
 
-    $victimTreeNumbersString = implode(',', $victimIds);
-    $insert_query = "INSERT INTO damagetree (cut_tree, victim) VALUES ('$cutTreeId', '$victimTreeNumbersString')";
-    $insert_result = mysqli_query($dbc, $insert_query);
-
-    if (!$insert_result) {
-        die('Error updating data in damagetree: ' . mysqli_error($dbc));
+        if (!$insert_result) {
+            die('Error updating data in damagetree: ' . mysqli_error($dbc));
+        }
     }
 
     // Store the count of affected trees in the 'damage' column of 'newforestori' table
