@@ -32,6 +32,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $x0 = $row['x'];
     $y0 = $row['y'];
     $victimIds = [];
+    $affectedVictims = [];
 
     // Define additional buffer beyond the stem height
     $buffer = 10;  // 5 + 5 as described
@@ -173,27 +174,55 @@ while ($row = mysqli_fetch_assoc($result)) {
         mysqli_free_result($result4);
     }
 
-    // Insert victim tree numbers into damagetree table
-    foreach ($victimIds as $victimId) {
-        $insert_query = "INSERT INTO damagetree (cut_tree, victim) VALUES ('$cutTreeId', '$victimId')";
-        $insert_result = mysqli_query($dbc, $insert_query);
+    /// Construct the query to find affected victims by the current cut tree
+    $count_query = "SELECT coordinate FROM newforestori WHERE status_tree != 'Cut' AND x > $x0 AND x < $x_upper AND y > $y0 AND y < $y_upper";
 
-        if (!$insert_result) {
-            die('Error updating data in damagetree: ' . mysqli_error($dbc));
-        }
+    // Execute the query
+    $result_count = mysqli_query($dbc, $count_query);
+
+    // Check if the query executed successfully
+    if (!$result_count) {
+        die('Error executing query: ' . mysqli_error($dbc));
     }
 
-    // Store the count of affected trees in the 'damage' column of 'newforestori' table
-    $affectedCount = count($victimIds);
+    while ($row_count = mysqli_fetch_assoc($result_count)) {
+        $victimId = $row_count['coordinate'];
+    
+        // Update the array of affected victims and their corresponding cut trees
+        if (!isset($affectedVictims[$victimId])) {
+            $affectedVictims[$victimId] = [];
+        }
+        
+        // Add the current cut tree to the list of affected trees for the victim
+        $affectedVictims[$victimId][] = $cutTreeId;
+    }
+    
+    // Free the result set
+    mysqli_free_result($result_count);
+    
+    // Insert the affected victims and their corresponding cut trees into the database
+    foreach ($affectedVictims as $victimId => $cutTrees) {
+        // Convert the array of cut trees to a comma-separated string
+        $cutTreeList = implode(',', $cutTrees);
+        
+        // Insert or update the damage table with the victim and its affected cut trees
+        $insert_query = "INSERT INTO damagetree ( cut_tree, victim) VALUES ( '$cutTreeList' , '$victimId')";
+        
+        // Execute the insert query
+        $insert_result = mysqli_query($dbc, $insert_query);
+        
+        // Check if the insert was successful
+        if (!$insert_result) {
+            die('Error inserting data into damagetree table: ' . mysqli_error($dbc));
+        }
+
+        $affectedCount = count($victimIds);
     $update_query = "UPDATE newforestori SET damage = $affectedCount WHERE coordinate = '$cutTreeId'";
     $update_result = mysqli_query($dbc, $update_query);
 
     if (!$update_result) {
         die('Error updating data in newforestori: ' . mysqli_error($dbc));
     }
+    }
 }
-
-// Close the database connection
-mysqli_close($dbc);
-
 ?>
