@@ -17,7 +17,7 @@ mysqli_set_charset($dbc, 'utf8');
 
 // For example, you can retrieve data from the 'newforestori' table and perform calculations:
 // Construct the SQL query to retrieve data for all "Cut" trees
-$sql = "SELECT TreeNum, Cut_Angle, x ,y, StemHeight, coordinate FROM newforestori WHERE status_tree = 'Cut'";
+$sql = "SELECT TreeNum, Cut_Angle, x ,y, StemHeight FROM newforestori WHERE status_tree = 'Cut'";
 $result = mysqli_query($dbc, $sql);
 
 // Check if the query executed successfully
@@ -26,203 +26,241 @@ if (!$result) {
 }
 
 while ($row = mysqli_fetch_assoc($result)) {
-    $cutAngle = $row['Cut_Angle'];
-    $stemHeight = $row['StemHeight']; // Initialize victimId here
-    $cutTreeId = $row['coordinate'];
+
+    // Extracting coordinates from the row
+    $cut_tree_coordinate = $row['x'] . ',' . $row['y']; // Coordinate of the cut tree
     $x0 = $row['x'];
     $y0 = $row['y'];
-    $victimIds = [];
-    $affectedVictims = [];
-
-    // Define additional buffer beyond the stem height
+    $cutAngle = $row['Cut_Angle'];
+    $stemHeight = $row['StemHeight'];
+    
     $buffer = 10;  // 5 + 5 as described
 
-    // Initialize the query to count affected trees
-    $count_query = "";
+    $count_query = ""; // Initialize count_query to empty string
 
-    // Calculate the range for x and y based on the cutting angle
     if ($cutAngle >= 0 && $cutAngle < 90) {
         // Quadrant I: 0 - 90 degrees
-        
         $x_upper = $x0 + $stemHeight + $buffer;
         $y_upper = $y0 + $stemHeight + $buffer;
 
-        // Quadrant II: 90 - 180 degree
-
-        // Execute query to find affected trees
-        $count_query = "SELECT coordinate FROM newforestori WHERE status_tree != 'Cut' AND x > $x0 AND x < $x_upper AND y > $y_upper AND y < $y0";
-
-        // Execute the query
-        $result1 = mysqli_query($dbc, $count_query);
-
-        // Check if the query executed successfully
-        if (!$result1) {
-            die('Error executing query: ' . mysqli_error($dbc));
-        }
-
-        // Process the result set
-        while ($row1 = mysqli_fetch_assoc($result1)) {
-            $y1 = $y0 + ($x0 / tan(deg2rad( $cutAngle + 1)));
-            $y2 = $y0 + ($x0 / tan(deg2rad($cutAngle - 1)));
-
-            $damage1 = "SELECT coordinate FROM newforestori WHERE status_tree != 'Cut' AND $y0 > $y1 AND $y0 < $y2" ;
-            $damage_result1 = mysqli_query($dbc, $damage1);
-
-            while ($row1 = mysqli_fetch_assoc($damage_result1)) {
-                $victimIds[] = $row1['coordinate'];
-            }
-        }
-        mysqli_free_result($result1);
-
-    } elseif ($cutAngle >= 90 && $cutAngle < 180) {
+        $count_query = "SELECT x, y FROM newforestori WHERE status_tree != 'Cut' AND x > $x0 AND x < $x_upper AND y > $y0 AND y < $y_upper";
+    }
+    elseif ($cutAngle >= 90 && $cutAngle < 180) {
         // Quadrant II: 90 - 180 degrees
         $x_upper = $x0 + $stemHeight + $buffer;
         $y_upper = $y0 - $stemHeight - $buffer;
-
-        // Execute query to find affected trees
-        $count_query = "SELECT coordinate FROM newforestori WHERE status_tree != 'Cut' AND x > $x0 AND x < $x_upper AND y > $y_upper AND y < $y0";
-
-        // Execute the query
-        $result2 = mysqli_query($dbc, $count_query);
-
-        // Check if the query executed successfully
-        if (!$result2) {
-            die('Error executing query: ' . mysqli_error($dbc));
-        }
-
-        // Process the result set
-        while ($row2 = mysqli_fetch_assoc($result2)) {
-            $cutAngle = 180 - $cutAngle;
-            $radian = deg2rad($cutAngle);
-            $y1 = $y0 + ($x0 / tan( $radian + 1));
-            $y2 = $y0 + ($x0 / tan( $radian - 1));
-
-            $damage2 = "SELECT coordinate FROM newforestori WHERE status_tree != 'Cut' AND $y0 > $y1 AND $y0 < $y2" ;
-            $damage_result2 = mysqli_query($dbc, $damage2);
-
-            while ($row2 = mysqli_fetch_assoc($damage_result2)) {
-                $victimIds[] = $row2['coordinate'];
-            }
-        }
-
-        // Free the result set
-        mysqli_free_result($result2);
-
-    } elseif ($cutAngle >= 180 && $cutAngle < 270) {
+        $count_query2 = "SELECT x, y FROM newforestori WHERE status_tree != 'Cut' AND x > $x0 AND x < $x_upper AND y > $y0 AND y < $y_upper";
+    }
+    elseif ($cutAngle >= 180 && $cutAngle < 270) {
         // Quadrant III: 180 - 270 degrees
         $x_upper = $x0 - $stemHeight - $buffer;
         $y_upper = $y0 - $stemHeight - $buffer;
-
-        // Execute query to find affected trees
-        $count_query = "SELECT coordinate FROM newforestori WHERE status_tree != 'Cut' AND x > $x0 AND x < $x_upper AND y > $y_upper AND y < $y0";
-
-        // Execute the query
-        $result3 = mysqli_query($dbc, $count_query);
-
-        // Check if the query executed successfully
-        if (!$result3) {
-            die('Error executing query: ' . mysqli_error($dbc));
-        }
-
-        // Process the result set
-        while ($row3 = mysqli_fetch_assoc($result3)) {
-            $cutAngle = 180 + $cutAngle;
-            $y1 = $y0 - ($x0 / tan(deg2rad($cutAngle  + 1)));
-            $y2 = $y0 - ($x0 / tan(deg2rad($cutAngle - 1)));
-
-            $damage3 = "SELECT coordinate FROM newforestori WHERE status_tree != 'Cut' AND $y0 > $y1 AND $y0 < $y2" ;
-            $damage_result3 = mysqli_query($dbc, $damage3);
-
-            while ($row3 = mysqli_fetch_assoc($damage_result3)) {
-                $victimIds[] = $row3['coordinate'];
-            }
-        }
-
-        // Free the result set
-        mysqli_free_result($result3);
+        $count_query3 = "SELECT x, y FROM newforestori WHERE status_tree != 'Cut' AND x > $x0 AND x < $x_upper AND y > $y0 AND y < $y_upper";
 
     } elseif ($cutAngle >= 270 && $cutAngle < 360) {
         // Quadrant IV: 270 - 360 degrees
         $x_upper = $x0 - $stemHeight - $buffer;
         $y_upper = $y0 + $stemHeight + $buffer;
+        $count_query4 = "SELECT x, y FROM newforestori WHERE status_tree != 'Cut' AND x > $x0 AND x < $x_upper AND y > $y0 AND y < $y_upper";
+    }
 
-        $count_query = "SELECT coordinate FROM newforestori WHERE status_tree != 'Cut' AND x > $x0 AND x < $x_upper AND y > $y_upper AND y < $y0";
+    // Ensure count_query is not empty before executing the query
+    if (!empty($count_query)) {
+        // Execute the query to find affected trees
+        $result1 = mysqli_query($dbc, $count_query);
 
-        // Execute the query
-        $result4 = mysqli_query($dbc, $count_query);
-
-        // Check if the query executed successfully
-        if (!$result4) {
+        if (!$result1) {
             die('Error executing query: ' . mysqli_error($dbc));
         }
 
-        // Process the result set
-        while ($row4 = mysqli_fetch_assoc($result4)) {
-            $cutAngle = 360 - $cutAngle;
-            $y1 = $y0 + ($x0 / tan(deg2rad($cutAngle - 270 + 1)));
-            $y2 = $y0 + ($x0 / tan(deg2rad($cutAngle - 270 - 1)));
+        while ($row1 = mysqli_fetch_assoc($result1)) {
 
-            $damage4 = "SELECT coordinate FROM newforestori WHERE status_tree != 'Cut' AND $y0 > $y1 AND $y0 < $y2" ;
-            $damage_result4 = mysqli_query($dbc, $damage4);
+            $radian = deg2rad($cutAngle);
 
-            while ($row4 = mysqli_fetch_assoc($damage_result4)) {
-                $victimIds[] = $row4['coordinate'];
+            $unknownTree_X = $row1['x'];
+            $unknownTree_Y = $row1['y'];
+
+            $y1 =  ($unknownTree_X / tan($radian + 1));
+            $y2 =  ($unknownTree_X / tan($radian - 1));
+
+            $x1_crown = $x0 + ($stemHeight + 5) * sin($radian);
+            $y1_crown = $y0 + ($stemHeight + 5) * cos($radian);
+
+            $distance = sqrt(pow(($x1_crown - $unknownTree_X), 2) + pow(($y1_crown - $unknownTree_Y), 2));
+
+            if ($unknownTree_Y > $y1 && $unknownTree_Y < $y2) {
+                $victim_x = $row1['x'];
+                $victim_y = $row1['y'];
+                $victim_coordinate = $victim_x . ',' . $victim_y; // Coordinate of the victim tree
+                $categoryDamage = 1; // Stem damage
+                // Insert the victim data into the database
+                $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                $result3 = mysqli_query($dbc, $insert_query);
+                if (!$result3) {
+                    die('Error inserting victim data: ' . mysqli_error($dbc));
+                }
+            } elseif ($distance <= 5) {
+                $victim_x = $row1['x'];
+                $victim_y = $row1['y'];
+                $victim_coordinate = $victim_x . ',' . $victim_y; // Coordinate of the victim tree
+                $categoryDamage = 2; // Crown damage
+                // Insert the victim data into the database
+                $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                $result3 = mysqli_query($dbc, $insert_query);
+                if (!$result3) {
+                    die('Error inserting victim data: ' . mysqli_error($dbc));
+                }
             }
         }
+    } else if (!empty($count_query2)) {
+        // Execute the query to find affected trees
+        $result2 = mysqli_query($dbc, $count_query2);
 
-        // Free the result set
-        mysqli_free_result($result4);
-    }
-
-    /// Construct the query to find affected victims by the current cut tree
-    $count_query = "SELECT coordinate FROM newforestori WHERE status_tree != 'Cut' AND x > $x0 AND x < $x_upper AND y > $y0 AND y < $y_upper";
-
-    // Execute the query
-    $result_count = mysqli_query($dbc, $count_query);
-
-    // Check if the query executed successfully
-    if (!$result_count) {
-        die('Error executing query: ' . mysqli_error($dbc));
-    }
-
-    while ($row_count = mysqli_fetch_assoc($result_count)) {
-        $victimId = $row_count['coordinate'];
-    
-        // Update the array of affected victims and their corresponding cut trees
-        if (!isset($affectedVictims[$victimId])) {
-            $affectedVictims[$victimId] = [];
-        }
-        
-        // Add the current cut tree to the list of affected trees for the victim
-        $affectedVictims[$victimId][] = $cutTreeId;
-    }
-    
-    // Free the result set
-    mysqli_free_result($result_count);
-    
-    // Insert the affected victims and their corresponding cut trees into the database
-    foreach ($affectedVictims as $victimId => $cutTrees) {
-        // Convert the array of cut trees to a comma-separated string
-        $cutTreeList = implode(',', $cutTrees);
-        
-        // Insert or update the damage table with the victim and its affected cut trees
-        $insert_query = "INSERT INTO damagetree ( cut_tree, victim) VALUES ( '$cutTreeList' , '$victimId')";
-        
-        // Execute the insert query
-        $insert_result = mysqli_query($dbc, $insert_query);
-        
-        // Check if the insert was successful
-        if (!$insert_result) {
-            die('Error inserting data into damagetree table: ' . mysqli_error($dbc));
+        if (!$result2) {
+            die('Error executing query: ' . mysqli_error($dbc));
         }
 
-        $affectedCount = count($victimIds);
-    $update_query = "UPDATE newforestori SET damage = $affectedCount WHERE coordinate = '$cutTreeId'";
-    $update_result = mysqli_query($dbc, $update_query);
+        while ($row2 = mysqli_fetch_assoc($result2)) {
 
-    if (!$update_result) {
-        die('Error updating data in newforestori: ' . mysqli_error($dbc));
-    }
+            $cutAngle = 180 - $cutAngle;
+
+            $radian = deg2rad($cutAngle);
+
+            $unknownTree_X = $row2['x'];
+            $unknownTree_Y = $row2['y'];
+
+            $y1 =  (($y0 - $unknownTree_X) / tan($radian + 1));
+            $y2 =  (($y0 - $unknownTree_X) / tan($radian - 1));
+
+            $x1_crown = $x0 + ($stemHeight + 5) * sin($radian);
+            $y1_crown = $y0 - ($stemHeight + 5) * cos($radian);
+
+            $distance = sqrt(pow(($x1_crown - $unknownTree_X), 2) + pow(($y1_crown - $unknownTree_Y), 2));
+
+            if ($unknownTree_Y > $y1 && $unknownTree_Y < $y2) {
+                $victim_x = $row2['x'];
+                $victim_y = $row2['y'];
+                $victim_coordinate = $victim_x . ',' . $victim_y; // Coordinate of the victim tree
+                $categoryDamage = 1; // Stem damage
+                // Insert the victim data into the database
+                $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                $result3 = mysqli_query($dbc, $insert_query);
+                if (!$result3) {
+                    die('Error inserting victim data: ' . mysqli_error($dbc));
+                }
+            } elseif ($distance <= 5) {
+                $victim_x = $row2['x'];
+                $victim_y = $row2['y'];
+                $victim_coordinate = $victim_x . ',' . $victim_y; // Coordinate of the victim tree
+                $categoryDamage = 2; // Crown damage
+                // Insert the victim data into the database
+                $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                $result3 = mysqli_query($dbc, $insert_query);
+                if (!$result3) {
+                    die('Error inserting victim data: ' . mysqli_error($dbc));
+                }
+            }
+        }
+        
+    } else if (!empty($count_query2)) {
+        // Execute the query to find affected trees
+        $result3 = mysqli_query($dbc, $count_query2);
+    
+        if (!$result3) {
+            die('Error executing query: ' . mysqli_error($dbc));
+        }
+    
+        while ($row2 = mysqli_fetch_assoc($result3)) {
+
+            $cutAngle = 180 + $cutAngle;
+    
+            $radian = deg2rad($cutAngle);
+    
+            $unknownTree_X = $row2['x'];
+            $unknownTree_Y = $row2['y'];
+    
+            $y1 =  (($y0 - $unknownTree_X) / tan($radian + 1));
+            $y2 =  (($y0 - $unknownTree_X) / tan($radian - 1));
+    
+            $x1_crown = $x0 - ($stemHeight + 5) * sin($radian);
+            $y1_crown = $y0 - ($stemHeight + 5) * cos($radian);
+    
+            $distance = sqrt(pow(($x1_crown - $unknownTree_X), 2) + pow(($y1_crown - $unknownTree_Y), 2));
+    
+            if ($unknownTree_Y > $y1 && $unknownTree_Y < $y2) {
+                $victim_x = $row2['x'];
+                $victim_y = $row2['y'];
+                $victim_coordinate = $victim_x . ',' . $victim_y; // Coordinate of the victim tree
+                $categoryDamage = 1; // Stem damage
+                // Insert the victim data into the database
+                $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                $result3 = mysqli_query($dbc, $insert_query);
+                if (!$result3) {
+                    die('Error inserting victim data: ' . mysqli_error($dbc));
+                }
+            } elseif ($distance <= 5) {
+                $victim_x = $row2['x'];
+                $victim_y = $row2['y'];
+                $victim_coordinate = $victim_x . ',' . $victim_y; // Coordinate of the victim tree
+                $categoryDamage = 2; // Crown damage
+                // Insert the victim data into the database
+                $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                $result3 = mysqli_query($dbc, $insert_query);
+                if (!$result3) {
+                    die('Error inserting victim data: ' . mysqli_error($dbc));
+                }
+            }
+        }
+    }else if (!empty($count_query3)) {
+        // Execute the query to find affected trees
+        $result4 = mysqli_query($dbc, $count_query3);
+    
+        if (!$result4) {
+            die('Error executing query: ' . mysqli_error($dbc));
+        }
+    
+        while ($row2 = mysqli_fetch_assoc($result4)) {
+
+            $cutAngle = 360 - $cutAngle;
+    
+            $radian = deg2rad($cutAngle);
+    
+            $unknownTree_X = $row2['x'];
+            $unknownTree_Y = $row2['y'];
+    
+            $y1 =  (($y0 - $unknownTree_X) / tan($radian + 1));
+            $y2 =  (($y0 - $unknownTree_X) / tan($radian - 1));
+    
+            $x1_crown = $x0 - ($stemHeight + 5) * sin($radian);
+            $y1_crown = $y0 + ($stemHeight + 5) * cos($radian);
+    
+            $distance = sqrt(pow(($x1_crown - $unknownTree_X), 2) + pow(($y1_crown - $unknownTree_Y), 2));
+    
+            if ($unknownTree_Y > $y1 && $unknownTree_Y < $y2) {
+                $victim_x = $row2['x'];
+                $victim_y = $row2['y'];
+                $victim_coordinate = $victim_x . ',' . $victim_y; // Coordinate of the victim tree
+                $categoryDamage = 1; // Stem damage
+                // Insert the victim data into the database
+                $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                $result3 = mysqli_query($dbc, $insert_query);
+                if (!$result3) {
+                    die('Error inserting victim data: ' . mysqli_error($dbc));
+                }
+            } elseif ($distance <= 5) {
+                $victim_x = $row2['x'];
+                $victim_y = $row2['y'];
+                $victim_coordinate = $victim_x . ',' . $victim_y; // Coordinate of the victim tree
+                $categoryDamage = 2; // Crown damage
+                // Insert the victim data into the database
+                $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                $result3 = mysqli_query($dbc, $insert_query);
+                if (!$result3) {
+                    die('Error inserting victim data: ' . mysqli_error($dbc));
+                }
+            }
+        }
+    
     }
 }
 ?>
