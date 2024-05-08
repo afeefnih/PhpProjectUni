@@ -88,28 +88,56 @@ while ($row = mysqli_fetch_assoc($result)) {
 
             $distance = sqrt(pow(($x1_crown - $unknownTree_X), 2) + pow(($y1_crown - $unknownTree_Y), 2));
 
-            if ($unknownTree_Y > $y1 && $unknownTree_Y < $y2) {
+            if (($unknownTree_Y > $y1 && $unknownTree_Y < $y2) ) {
                 $victim_x = $row1['x'];
                 $victim_y = $row1['y'];
                 $victim_coordinate = $victim_x . ',' . $victim_y; // Coordinate of the victim tree
-                $categoryDamage = 1; // Stem damage
+            
+                // Determine the category of damage based on the conditions
+                $categoryDamage = 1 ;
+
+                if ($distance <= 5) {
+                    $categoryDamage = 2;
+
+                    $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                    $result3 = mysqli_query($dbc, $insert_query);
+                    if (!$result3) {
+                        die('Error inserting victim data: ' . mysqli_error($dbc));
+                    }
+                }
+            
                 // Insert the victim data into the database
                 $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
                 $result3 = mysqli_query($dbc, $insert_query);
                 if (!$result3) {
                     die('Error inserting victim data: ' . mysqli_error($dbc));
                 }
-            } elseif ($distance <= 5) {
+            }else if($distance <= 5){
                 $victim_x = $row1['x'];
                 $victim_y = $row1['y'];
                 $victim_coordinate = $victim_x . ',' . $victim_y; // Coordinate of the victim tree
-                $categoryDamage = 2; // Crown damage
+            
+                // Determine the category of damage based on the conditions
+                $categoryDamage = 2;
+                if (($unknownTree_Y > $y1 && $unknownTree_Y < $y2) ) {
+
+                    $categoryDamage = 1;
+
+                    $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                    $result3 = mysqli_query($dbc, $insert_query);
+                    if (!$result3) {
+                        die('Error inserting victim data: ' . mysqli_error($dbc));
+                    }
+
+                }
+            
                 // Insert the victim data into the database
                 $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
                 $result3 = mysqli_query($dbc, $insert_query);
                 if (!$result3) {
                     die('Error inserting victim data: ' . mysqli_error($dbc));
                 }
+
             }
         }
     } else if (!empty($count_query2)) {
@@ -137,28 +165,58 @@ while ($row = mysqli_fetch_assoc($result)) {
 
             $distance = sqrt(pow(($x1_crown - $unknownTree_X), 2) + pow(($y1_crown - $unknownTree_Y), 2));
 
-            if ($unknownTree_Y > $y1 && $unknownTree_Y < $y2) {
-                $victim_x = $row2['x'];
-                $victim_y = $row2['y'];
+            if (($unknownTree_Y > $y1 && $unknownTree_Y < $y2) ) {
+                $victim_x = $row1['x'];
+                $victim_y = $row1['y'];
                 $victim_coordinate = $victim_x . ',' . $victim_y; // Coordinate of the victim tree
-                $categoryDamage = 1; // Stem damage
+            
+                // Determine the category of damage based on the conditions
+                $categoryDamage = 1 ;
+
+                if ($distance <= 5) {
+                    $categoryDamage = 2;
+
+                    $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                    $result3 = mysqli_query($dbc, $insert_query);
+                    if (!$result3) {
+                        die('Error inserting victim data: ' . mysqli_error($dbc));
+                    }
+                }else{
+            
                 // Insert the victim data into the database
                 $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
                 $result3 = mysqli_query($dbc, $insert_query);
                 if (!$result3) {
                     die('Error inserting victim data: ' . mysqli_error($dbc));
                 }
-            } elseif ($distance <= 5) {
-                $victim_x = $row2['x'];
-                $victim_y = $row2['y'];
+            }
+            }else if($distance <= 5){
+                $victim_x = $row1['x'];
+                $victim_y = $row1['y'];
                 $victim_coordinate = $victim_x . ',' . $victim_y; // Coordinate of the victim tree
-                $categoryDamage = 2; // Crown damage
+            
+                // Determine the category of damage based on the conditions
+                $categoryDamage = 2;
+                if (($unknownTree_Y > $y1 && $unknownTree_Y < $y2) ) {
+
+                    $categoryDamage = 1;
+
+                    $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                    $result3 = mysqli_query($dbc, $insert_query);
+                    if (!$result3) {
+                        die('Error inserting victim data: ' . mysqli_error($dbc));
+                    }
+
+                }
+            
+            
                 // Insert the victim data into the database
                 $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
                 $result3 = mysqli_query($dbc, $insert_query);
                 if (!$result3) {
                     die('Error inserting victim data: ' . mysqli_error($dbc));
                 }
+
             }
         }
         
@@ -187,28 +245,59 @@ while ($row = mysqli_fetch_assoc($result)) {
     
             $distance = sqrt(pow(($x1_crown - $unknownTree_X), 2) + pow(($y1_crown - $unknownTree_Y), 2));
     
-            if ($unknownTree_Y > $y1 && $unknownTree_Y < $y2) {
-                $victim_x = $row2['x'];
-                $victim_y = $row2['y'];
+            if (($unknownTree_Y > $y1 && $unknownTree_Y < $y2) ) {
+                $victim_x = $row1['x'];
+                $victim_y = $row1['y'];
                 $victim_coordinate = $victim_x . ',' . $victim_y; // Coordinate of the victim tree
-                $categoryDamage = 1; // Stem damage
+            
+                // Determine the category of damage based on the conditions
+                $categoryDamage = 1 ;
+
+                if ($distance <= 5) {
+                    $categoryDamage = 2;
+
+                    $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                    $result3 = mysqli_query($dbc, $insert_query);
+                    if (!$result3) {
+                        die('Error inserting victim data: ' . mysqli_error($dbc));
+                    }
+                }else{
+            
                 // Insert the victim data into the database
                 $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
                 $result3 = mysqli_query($dbc, $insert_query);
                 if (!$result3) {
                     die('Error inserting victim data: ' . mysqli_error($dbc));
                 }
-            } elseif ($distance <= 5) {
-                $victim_x = $row2['x'];
-                $victim_y = $row2['y'];
+            }
+            }else if($distance <= 5){
+                $victim_x = $row1['x'];
+                $victim_y = $row1['y'];
                 $victim_coordinate = $victim_x . ',' . $victim_y; // Coordinate of the victim tree
-                $categoryDamage = 2; // Crown damage
+            
+                // Determine the category of damage based on the conditions
+                $categoryDamage = 2;
+
+                if (($unknownTree_Y > $y1 && $unknownTree_Y < $y2) ) {
+
+                    $categoryDamage = 1;
+
+                    $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                    $result3 = mysqli_query($dbc, $insert_query);
+                    if (!$result3) {
+                        die('Error inserting victim data: ' . mysqli_error($dbc));
+                    }
+
+                }
+            
+            
                 // Insert the victim data into the database
                 $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
                 $result3 = mysqli_query($dbc, $insert_query);
                 if (!$result3) {
                     die('Error inserting victim data: ' . mysqli_error($dbc));
                 }
+
             }
         }
     }else if (!empty($count_query3)) {
@@ -236,28 +325,58 @@ while ($row = mysqli_fetch_assoc($result)) {
     
             $distance = sqrt(pow(($x1_crown - $unknownTree_X), 2) + pow(($y1_crown - $unknownTree_Y), 2));
     
-            if ($unknownTree_Y > $y1 && $unknownTree_Y < $y2) {
-                $victim_x = $row2['x'];
-                $victim_y = $row2['y'];
+            if (($unknownTree_Y > $y1 && $unknownTree_Y < $y2) ) {
+                $victim_x = $row1['x'];
+                $victim_y = $row1['y'];
                 $victim_coordinate = $victim_x . ',' . $victim_y; // Coordinate of the victim tree
-                $categoryDamage = 1; // Stem damage
+            
+                // Determine the category of damage based on the conditions
+                $categoryDamage = 1 ;
+
+                if ($distance <= 5) {
+                    $categoryDamage = 2;
+
+                    $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                    $result3 = mysqli_query($dbc, $insert_query);
+                    if (!$result3) {
+                        die('Error inserting victim data: ' . mysqli_error($dbc));
+                    }
+                }else{
+            
+                // Insert the victim data into the database
+                $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage) ";
+                $result3 = mysqli_query($dbc, $insert_query);
+                if (!$result3) {
+                    die('Error inserting victim data: ' . mysqli_error($dbc));
+                }
+            }
+            }else if($distance <= 5){
+                $victim_x = $row1['x'];
+                $victim_y = $row1['y'];
+                $victim_coordinate = $victim_x . ',' . $victim_y; // Coordinate of the victim tree
+            
+                // Determine the category of damage based on the conditions
+                $categoryDamage = 2;
+
+                if (($unknownTree_Y > $y1 && $unknownTree_Y < $y2) ) {
+
+                    $categoryDamage = 1;
+
+                    $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                    $result3 = mysqli_query($dbc, $insert_query);
+                    if (!$result3) {
+                        die('Error inserting victim data: ' . mysqli_error($dbc));
+                    }
+
+                }
+            
                 // Insert the victim data into the database
                 $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
                 $result3 = mysqli_query($dbc, $insert_query);
                 if (!$result3) {
                     die('Error inserting victim data: ' . mysqli_error($dbc));
                 }
-            } elseif ($distance <= 5) {
-                $victim_x = $row2['x'];
-                $victim_y = $row2['y'];
-                $victim_coordinate = $victim_x . ',' . $victim_y; // Coordinate of the victim tree
-                $categoryDamage = 2; // Crown damage
-                // Insert the victim data into the database
-                $insert_query = "INSERT INTO damagetree (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
-                $result3 = mysqli_query($dbc, $insert_query);
-                if (!$result3) {
-                    die('Error inserting victim data: ' . mysqli_error($dbc));
-                }
+
             }
         }
     
