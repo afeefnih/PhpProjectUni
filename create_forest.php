@@ -1,112 +1,106 @@
-
-
 <?php
+// Database connection
 DEFINE ('DB_USER', 'root');
 DEFINE ('DB_PASSWORD', '');
 DEFINE ('DB_HOST', 'localhost');
 DEFINE ('DB_NAME', 'tree');
 
-
 // Make the connection:
-$dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) OR die ('Could not connect to MySQL: ' . mysqli_connect_error() );
+$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) OR die ('Could not connect to MySQL: ' . mysqli_connect_error());
 
 // Set the encoding...
-mysqli_set_charset($dbc, 'utf8');
+mysqli_set_charset($conn, 'utf8');
 
-
-
+// Variables
 $NoBlockX = 10;
 $NoBlockY = 10;
-$NoGroupSpecies = 7;
-$NumDclass = 5;
-$TreePerha = array_fill(0, $NoGroupSpecies, array_fill(0, $NumDclass, 0)); // Assuming TreePerha is a 2D array initialized elsewhere
-$ListSpecies = array_fill(0, 318, array_fill(0, 318, 0)); // Assuming ListSpecies is a 2D array initialized elsewhere
+$NoGroupSpecies = 7; // You should define this based on your data
+$NumDclass = 5; // You should define this based on your data
 
-echo "<table border='1'>";
-echo "<tr><th>No.</th><th>Block</th><th>Group Species</th><th>Class</th><th>X</th><th>Y</th><th>Species</th><th>Diameter</th><th>Height</th></tr>";
+// Example TreePerha array (you need to define this based on your data)
+$TreePerha = [
+    [15, 12, 4, 2, 2], // Number of trees per hectare for each species group and diameter class
+    [21, 18, 6, 4, 4],
+    [21, 18, 6, 4, 4],
+    [30, 27, 9, 5, 3],
+    [30, 27, 9, 4, 4],
+    [39, 36, 12, 7, 4],
+    [44, 42, 14, 9, 4]
+];
 
-$count = 1; // Initialize counter
+// Example ListSpecies array (you need to define this based on your data)
+$ListSpecies = [];
+$sql = "SELECT No, species FROM speciesname";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $ListSpecies[$row['No']] = $row['species'];
+    }
+} else {
+    die("No species found in the database.");
+}
+
+
 
 for ($IX = 1; $IX <= $NoBlockX; $IX++) {
     for ($JY = 1; $JY <= $NoBlockY; $JY++) {
-
-
         $blockx = $IX;
         $blocky = $JY;
 
         for ($I = 1; $I <= $NoGroupSpecies; $I++) {
             for ($J = 1; $J <= $NumDclass; $J++) {
-                $NumTree = isset($TreePerha[$I - 1][$J - 1]) ? $TreePerha[$I - 1][$J - 1] : 0;
-                $species = 0; // Initialize $species here
-                if ($I == 1) {
-                    $SquenceSp = rand(1, 1);
-                } elseif ($I == 2) {
-                    $SquenceSp = rand(2, 6);
-                } elseif ($I == 3) {
-                    $SquenceSp = rand(7, 19);
-                } elseif ($I == 4) {
-                    $SquenceSp = rand(19, 60);
-                } elseif ($I == 5) {
-                    $SquenceSp = rand(61, 150);
-                } elseif ($I == 6) {
-                    $SquenceSp = rand(151, 250);
-                } elseif ($I == 7) {
-                    $SquenceSp = rand(251, 318);
+                $NumTree = $TreePerha[$I-1][$J-1];
+
+                for ($K = 1; $K <= $NumTree; $K++) {
+                    // Determine Species
+                    if ($I == 1) $SequenceSp = rand(1, 1);
+                    else if ($I == 2) $SequenceSp = rand(2, 6);
+                    else if ($I == 3) $SequenceSp = rand(7, 19);
+                    else if ($I == 4) $SequenceSp = rand(19, 60);
+                    else if ($I == 5) $SequenceSp = rand(61, 150);
+                    else if ($I == 6) $SequenceSp = rand(151, 250);
+                    else if ($I == 76) $SequenceSp = rand(251, 400);
+
+                    $species = $ListSpecies[$SequenceSp];
+
+                    // Determine Diameter
+                    if ($J == 1) $diameter = rand(500, 1500) / 100;
+                    else if ($J == 2) $diameter = rand(1500, 3000) / 100;
+                    else if ($J == 3) $diameter = rand(3000, 4500) / 100;
+                    else if ($J == 4) $diameter = rand(4500, 6000) / 100;
+                    else if ($J == 5) $diameter = rand(6000, 20000) / 100;
+
+                    // Determine Height
+                    if ($J == 1) $height = rand(250, 550) / 100;
+                    else if ($J == 2) $height = rand(550, 1000) / 100;
+                    else if ($J == 3) $height = rand(1000, 1500) / 100;
+                    else if ($J == 4) $height = rand(1500, 4000) / 100;
+                    else if ($J == 5) $height = rand(1500, 4000)/ 100;
+
+                    // Determine Location
+                    $locationx = rand(1, 100);
+                    $locationy = rand(1, 100);
+                    $x = ($blockx - 1) * 100 + $locationx;
+                    $y = ($blocky - 1) * 100 + $locationy;
+
+                    $spgroup = $I; // Assuming spgroup corresponds to the outer loop index $I
+
+                    // Determine diameterclass
+                    $diameterclass = $J; // Assuming diameterclass corresponds to the inner loop index $J
+                    
+                    // Store in database
+                    $sql = "INSERT INTO newforestori (BlockX, BlockY, x, y, species, diameter, StemHeight, spgroup, diameterclass) VALUES ($blockx, $blocky ,$x, $y, '$species', $diameter, $height, $spgroup, $diameterclass)";
+                    if ($conn->query($sql) === TRUE) {
+                        echo "New record created successfully";
+                    } else {
+                        echo "Error: " . $sql . "<br>" . $conn->error;
+                    }
                 }
-                $species = $SquenceSp;
-
-                if ($J == 1) {
-                    $diameter1 = rand(500, 1500) / 100;
-                } elseif ($J == 2) {
-                    $diameter1 = rand(1500, 3000) / 100;
-                } elseif ($J == 3) {
-                    $diameter1 = rand(3000, 4500) / 100;
-                } elseif ($J == 4) {
-                    $diameter1 = rand(4500, 6000) / 100;
-                } elseif ($J == 5) {
-                    $diameter1 = rand(6000, 20000) / 100;
-                }
-                $diameter = $diameter1;
-
-                if ($J == 1) {
-                    $height1 = rand(250, 550) / 100;
-                } elseif ($J == 2) {
-                    $height1 = rand(550, 1000) / 100;
-                } elseif ($J == 3) {
-                    $height1 = rand(1000, 1500) / 100;
-                } elseif ($J == 4) {
-                    $height1 = rand(1500, 4000) / 100;
-                } elseif ($J == 5) {
-                    $height1 = rand(4000, 10000)/100;
-                }
-                $height = $height1;
-
-                $locationx = rand(1, 100);
-                $locationy = rand(1, 100);
-                $x = ($blockx - 1) * 100 + $locationx;
-                $y = ($blocky - 1) * 100 + $locationy;
-
-                // Output as table rows with numbering
-                echo "<tr><td>$count</td><td>($blockx, $blocky)</td><td>$I</td><td>$J</td><td>$x</td><td>$y</td><td>$species</td><td>$diameter</td><td>$height</td></tr>";
-               
-#--code to store data into database--
-                
-$q = "INSERT INTO newforestori (BlockX, BlockY, species, Diameter,DiameterClass, StemHeight, X, Y,spgroup) VALUES ('$blockx', '$blocky', '$species', '$diameter','$J', '$height', '$x', '$y','$I')";
-               $r = mysqli_query($dbc, $q);
-               if (!$r) {
-                  die('Error: ' . mysqli_error($dbc));
-              }
-                
-             $count++; // Increment counter
-               
-       }
-      }
+            }
+        }
     }
 }
 
-
-
-echo "</table>";
-
- ?>
-
+$conn->close();
+?>

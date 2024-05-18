@@ -76,7 +76,7 @@
     
     
     /*-------------------- Categories 5 - 15 --------------------*/
-    $VolumeMersawaSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 1 AND Diameter>=5 AND Diameter<=15";
+    $VolumeMersawaSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 1 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $VolumeMersawaSQL);
     
     if ($result) {
@@ -84,7 +84,7 @@
         $totalTreeMersawa1 = $row['totalVolume'];
     }
     
-    $VolumeKeruingSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 2 AND Diameter>=5 AND Diameter<=15";
+    $VolumeKeruingSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 2 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $VolumeKeruingSQL);
     
     if ($result) {
@@ -92,7 +92,7 @@
         $totalTreeKeruing1 = $row['totalVolume'];
     }
     
-    $VolumeDipMarketSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 3 AND Diameter>=5 AND Diameter<=15";
+    $VolumeDipMarketSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 3 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $VolumeDipMarketSQL);
     
     if ($result) {
@@ -100,7 +100,7 @@
         $totalTreeDipMarket1 = $row['totalVolume'];
     }
     
-    $VolumeDipNonMarketSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 4 AND Diameter>=5 AND Diameter<=15";
+    $VolumeDipNonMarketSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 4 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $VolumeDipNonMarketSQL);
     
     if ($result) {
@@ -108,7 +108,7 @@
         $totalTreeDipNonMarket1 = $row['totalVolume'];
     }
     
-    $VolumeNonDipMarketSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 5 AND Diameter>=5 AND Diameter<=15";
+    $VolumeNonDipMarketSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 5 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $VolumeNonDipMarketSQL);
     
     if ($result) {
@@ -116,7 +116,7 @@
         $totalTreeNonDipMarket1 = $row['totalVolume'];
     }
     
-    $VolumeNonDipNonMarketSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 6 AND Diameter>=5 AND Diameter<=15";
+    $VolumeNonDipNonMarketSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 6 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $VolumeNonDipNonMarketSQL);
     
     if ($result) {
@@ -124,7 +124,7 @@
         $totalTreeNonDipNonMarket1 = $row['totalVolume'];
     }
     
-    $VolumeOthersSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 7 AND Diameter>=5 AND Diameter<=15";
+    $VolumeOthersSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 7 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $VolumeOthersSQL);
     
     if ($result) {
@@ -137,7 +137,7 @@
     
     /*-------------------- Categories 15 - 30 --------------------*/
     
-    $CountTreesSpgroup1SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 1 AND Diameter>=15 AND Diameter<=30";
+    $CountTreesSpgroup1SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 1 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $CountTreesSpgroup1SQL);
     
     if ($result) {
@@ -145,7 +145,7 @@
         $totalTreesSpgroup1 = $row['totalTrees'];
     }
     
-    $CountTreesSpgroup2SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 2 AND Diameter>=15 AND Diameter<=30";
+    $CountTreesSpgroup2SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 2 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $CountTreesSpgroup2SQL);
     
     if ($result) {
@@ -153,7 +153,7 @@
         $totalTreesSpgroup2 = $row['totalTrees'];
     }
     
-    $CountTreesSpgroup3SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 3 AND Diameter>=15 AND Diameter<=30";
+    $CountTreesSpgroup3SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 3 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $CountTreesSpgroup3SQL);
     
     if ($result) {
@@ -161,7 +161,7 @@
         $totalTreesSpgroup3 = $row['totalTrees'];
     }
     
-    $CountTreesSpgroup4SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 4 AND Diameter>=15 AND Diameter<=30";
+    $CountTreesSpgroup4SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 4 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $CountTreesSpgroup4SQL);
     
     if ($result) {
@@ -169,7 +169,7 @@
         $totalTreesSpgroup4 = $row['totalTrees'];
     }
     
-    $CountTreesSpgroup5SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 5 AND Diameter>=15 AND Diameter<=30";
+    $CountTreesSpgroup5SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 5 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $CountTreesSpgroup5SQL);
     
@@ -178,7 +178,7 @@
         $totalTreesSpgroup5 = $row['totalTrees'];
     }
     
-    $CountTreesSpgroup6SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 6 AND Diameter>=15 AND Diameter<=30";
+    $CountTreesSpgroup6SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 6 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $CountTreesSpgroup6SQL);
     
@@ -187,7 +187,7 @@
         $totalTreesSpgroup6 = $row['totalTrees'];
     }
     
-    $CountTreesSpgroup7SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 7 AND Diameter>=15 AND Diameter<=30";
+    $CountTreesSpgroup7SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 7 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $CountTreesSpgroup7SQL);
     
@@ -201,7 +201,7 @@
     
     
     /*-------------------- Categories 30 - 45 --------------------*/
-    $ProductionTreesSpgroup1SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 1  AND Diameter>=30 AND Diameter<=45";
+    $ProductionTreesSpgroup1SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 1  AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $ProductionTreesSpgroup1SQL);
     
@@ -210,7 +210,7 @@
         $totalProductionSpgroup1 = $row['totalProduction'];
     }
     
-    $ProductionTreesSpgroup2SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 2 AND Diameter>=30 AND Diameter<=45";
+    $ProductionTreesSpgroup2SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 2 AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $ProductionTreesSpgroup2SQL);
     
@@ -220,7 +220,7 @@
     }
     
     
-    $ProductionTreesSpgroup3SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 3 AND Diameter>=30 AND Diameter<=45";
+    $ProductionTreesSpgroup3SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 3 AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $ProductionTreesSpgroup3SQL);
     
@@ -229,7 +229,7 @@
         $totalProductionSpgroup3 = $row['totalProduction'];
     }
     
-    $ProductionTreesSpgroup4SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 4 AND Diameter>=30 AND Diameter<=45";
+    $ProductionTreesSpgroup4SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 4 AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $ProductionTreesSpgroup4SQL);
     
@@ -238,7 +238,7 @@
         $totalProductionSpgroup4 = $row['totalProduction'];
     }
     
-    $ProductionTreesSpgroup5SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 5 AND Diameter>=30 AND Diameter<=45";
+    $ProductionTreesSpgroup5SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 5 AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $ProductionTreesSpgroup5SQL);
     
@@ -247,7 +247,7 @@
         $totalProductionSpgroup5 = $row['totalProduction'];
     }
     
-    $ProductionTreesSpgroup6SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 6 AND Diameter>=30 AND Diameter<=45";
+    $ProductionTreesSpgroup6SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 6 AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $ProductionTreesSpgroup6SQL);
     
@@ -256,7 +256,7 @@
         $totalProductionSpgroup6 = $row['totalProduction'];
     }
     
-    $ProductionTreesSpgroup7SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 7 AND Diameter>=30 AND Diameter<=45";
+    $ProductionTreesSpgroup7SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 7 AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $ProductionTreesSpgroup7SQL);
     
@@ -269,7 +269,7 @@
     $totalTreeCategory3 = $totalProductionSpgroup1 +  $totalProductionSpgroup2 + $totalProductionSpgroup3 + $totalProductionSpgroup4 + $totalProductionSpgroup5 + $totalProductionSpgroup6 + $totalProductionSpgroup7;
     
     /*-------------------- Categories 45 - 60 --------------------*/
-    $DamageCrownSpgroup1SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 1 AND Diameter>=45 AND Diameter<=60";
+    $DamageCrownSpgroup1SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 1 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageCrownSpgroup1SQL);
     
@@ -278,7 +278,7 @@
         $totalDamageCrownSpgroup1 = $row['totalDamageCrown'];
     }
     
-    $DamageCrownSpgroup2SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 2 AND Diameter>=45 AND Diameter<=60";
+    $DamageCrownSpgroup2SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 2 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageCrownSpgroup2SQL);
     
@@ -287,7 +287,7 @@
         $totalDamageCrownSpgroup2 = $row['totalDamageCrown'];
     }
     
-    $DamageCrownSpgroup3SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 3 AND Diameter>=45 AND Diameter<=60";
+    $DamageCrownSpgroup3SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 3 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageCrownSpgroup3SQL);
     
@@ -296,7 +296,7 @@
         $totalDamageCrownSpgroup3 = $row['totalDamageCrown'];
     }
     
-    $DamageCrownSpgroup4SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 4 AND Diameter>=45 AND Diameter<=60";
+    $DamageCrownSpgroup4SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 4 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageCrownSpgroup4SQL);
     
@@ -305,7 +305,7 @@
         $totalDamageCrownSpgroup4 = $row['totalDamageCrown'];
     }
     
-    $DamageCrownSpgroup5SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 5 AND Diameter>=45 AND Diameter<=60";
+    $DamageCrownSpgroup5SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 5 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageCrownSpgroup5SQL);
     
@@ -314,7 +314,7 @@
         $totalDamageCrownSpgroup5 = $row['totalDamageCrown'];
     }
     
-    $DamageCrownSpgroup6SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 6 AND Diameter>=45 AND Diameter<=60";
+    $DamageCrownSpgroup6SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 6 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageCrownSpgroup6SQL);
     
@@ -323,7 +323,7 @@
         $totalDamageCrownSpgroup6 = $row['totalDamageCrown'];
     }
     
-    $DamageCrownSpgroup7SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 7 AND Diameter>=45 AND Diameter<=60";
+    $DamageCrownSpgroup7SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 7 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageCrownSpgroup7SQL);
     
@@ -337,7 +337,7 @@
     
     
     /*-------------------- Categories 60+ --------------------*/
-    $DamageStemSpgroup1SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 1 AND Diameter>=60";
+    $DamageStemSpgroup1SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 1 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageStemSpgroup1SQL);
     
@@ -346,7 +346,7 @@
         $totalDamageStemSpgroup1 = $row['totalDamageStem'];
     }
     
-    $DamageStemSpgroup2SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 2 AND Diameter>=60";
+    $DamageStemSpgroup2SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 2 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageStemSpgroup2SQL);
     
@@ -355,7 +355,7 @@
         $totalDamageStemSpgroup2 = $row['totalDamageStem'];
     }
     
-    $DamageStemSpgroup3SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 3 AND Diameter>=60";
+    $DamageStemSpgroup3SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 3 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageStemSpgroup3SQL);
     
@@ -364,7 +364,7 @@
         $totalDamageStemSpgroup3 = $row['totalDamageStem'];
     }
     
-    $DamageStemSpgroup4SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 4 AND Diameter>=60";
+    $DamageStemSpgroup4SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 4 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageStemSpgroup4SQL);
     
@@ -373,7 +373,7 @@
         $totalDamageStemSpgroup4 = $row['totalDamageStem'];
     }
     
-    $DamageStemSpgroup5SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 5 AND Diameter>=60";
+    $DamageStemSpgroup5SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 5 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageStemSpgroup5SQL);
     
@@ -382,7 +382,7 @@
         $totalDamageStemSpgroup5 = $row['totalDamageStem'];
     }
     
-    $DamageStemSpgroup6SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 6 AND Diameter>=60";
+    $DamageStemSpgroup6SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 6 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageStemSpgroup6SQL);
     
@@ -391,7 +391,7 @@
         $totalDamageStemSpgroup6 = $row['totalDamageStem'];
     }
     
-    $DamageStemSpgroup7SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 7 AND Diameter>=60";
+    $DamageStemSpgroup7SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 7 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageStemSpgroup7SQL);
     

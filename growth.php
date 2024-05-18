@@ -83,9 +83,9 @@ function calculateVolume30($newDiameter, $speciesgroup){
 
     //calculate the volume tree after 30 years
     if(in_array($speciesgroup, [1, 2, 3, 4])) {
-        return 0.022 + 3.4 * ($newDiameter * $newDiameter);
+        return 0.022 + 3.4 * (($newDiameter/100) * ($newDiameter/100));
     } elseif (in_array($speciesgroup, [5, 6, 7])){
-        return -0.0971 + 9.503 * ($newDiameter * $newDiameter);
+        return -0.0971 + 9.503 * (($newDiameter/100) * ($newDiameter/100));
     }else{
         return "Invalid Species group";
     }
