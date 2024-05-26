@@ -76,60 +76,67 @@
     
     
     /*-------------------- Categories 5 - 15 --------------------*/
-    $VolumeMersawaSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 1 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
+    $VolumeMersawaSQL = "SELECT COUNT(*) AS totaltress, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 1 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $VolumeMersawaSQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalTreeMersawa1 = $row['totalVolume'];
+        $totalTreeMersawa1 = $row['totaltress'];
+        $totalVolumeMersawa1 = $row['totalVolume'];
     }
     
-    $VolumeKeruingSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 2 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
+    $VolumeKeruingSQL = "SELECT COUNT(*) AS totaltress, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 2 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $VolumeKeruingSQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalTreeKeruing1 = $row['totalVolume'];
+        $totalTreeKeruing1 = $row['totaltress'];
+        $totalVolumeKeruing1 = $row['totalVolume'];
     }
     
-    $VolumeDipMarketSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 3 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
+    $VolumeDipMarketSQL = "SELECT COUNT(*) AS totaltress,SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 3 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $VolumeDipMarketSQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalTreeDipMarket1 = $row['totalVolume'];
+        $totalTreeDipMarket1 = $row['totaltress'];
+        $totalVolumeDipMarket1 = $row['totalVolume'];
     }
     
-    $VolumeDipNonMarketSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 4 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
+    $VolumeDipNonMarketSQL = "SELECT COUNT(*) AS totaltress ,SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 4 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $VolumeDipNonMarketSQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalTreeDipNonMarket1 = $row['totalVolume'];
+        $totalTreeDipNonMarket1 = $row['totaltress'];
+        $totalVolumeDipNonMarket1 = $row['totalVolume'];
     }
     
-    $VolumeNonDipMarketSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 5 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
+    $VolumeNonDipMarketSQL = "SELECT COUNT(*) AS totaltress ,SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 5 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $VolumeNonDipMarketSQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalTreeNonDipMarket1 = $row['totalVolume'];
+        $totalTreeNonDipMarket1 = $row['totaltress'];
+        $totalVolumeNonDipMarket1 = $row['totalVolume'];
     }
     
-    $VolumeNonDipNonMarketSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 6 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
+    $VolumeNonDipNonMarketSQL = "SELECT COUNT(*) AS totaltress ,SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 6 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $VolumeNonDipNonMarketSQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalTreeNonDipNonMarket1 = $row['totalVolume'];
+        $totalTreeNonDipNonMarket1 = $row['totaltress'];
+        $totalVolumeNonDipNonMarket1 = $row['totalVolume'];
     }
     
-    $VolumeOthersSQL = "SELECT COUNT(*) AS totalVolume FROM newforestori WHERE spgroup = 7 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
+    $VolumeOthersSQL = "SELECT COUNT(*) AS totaltress ,SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 7 AND Diameter>=5 AND Diameter<=15 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $VolumeOthersSQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalTreeOthers1 = $row['totalVolume'];
+        $totalTreeOthers1 = $row['totaltress'];
+        $totalVolumeOthers1 = $row['totalVolume'];
     }
     
     //Calculate total tree for Category 1
@@ -137,63 +144,71 @@
     
     /*-------------------- Categories 15 - 30 --------------------*/
     
-    $CountTreesSpgroup1SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 1 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
+    $CountTreesSpgroup1SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 1 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $CountTreesSpgroup1SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
         $totalTreesSpgroup1 = $row['totalTrees'];
+        $totalVolume1530Spgroup1 = $row['totalVolume'];
     }
     
-    $CountTreesSpgroup2SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 2 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
+    $CountTreesSpgroup2SQL = "SELECT COUNT(*) AS totalTrees,SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 2 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $CountTreesSpgroup2SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
         $totalTreesSpgroup2 = $row['totalTrees'];
+        $totalVolume1530Spgroup2 = $row['totalVolume'];
+
     }
     
-    $CountTreesSpgroup3SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 3 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
+    $CountTreesSpgroup3SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 3 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $CountTreesSpgroup3SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
         $totalTreesSpgroup3 = $row['totalTrees'];
+        $totalVolume1530Spgroup3 = $row['totalVolume'];
     }
     
-    $CountTreesSpgroup4SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 4 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
+    $CountTreesSpgroup4SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 4 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
     $result = mysqli_query($dbc, $CountTreesSpgroup4SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
         $totalTreesSpgroup4 = $row['totalTrees'];
+        $totalVolume1530Spgroup4 = $row['totalVolume'];
     }
     
-    $CountTreesSpgroup5SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 5 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
+    $CountTreesSpgroup5SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 5 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $CountTreesSpgroup5SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
         $totalTreesSpgroup5 = $row['totalTrees'];
+        $totalVolume1530Spgroup5 = $row['totalVolume'];
     }
     
-    $CountTreesSpgroup6SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 6 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
+    $CountTreesSpgroup6SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 6 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $CountTreesSpgroup6SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
         $totalTreesSpgroup6 = $row['totalTrees'];
+        $totalVolume1530Spgroup6 = $row['totalVolume'];
     }
     
-    $CountTreesSpgroup7SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 7 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
+    $CountTreesSpgroup7SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 7 AND Diameter>=15 AND Diameter<=30 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $CountTreesSpgroup7SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
         $totalTreesSpgroup7 = $row['totalTrees'];
+        $totalVolume1530Spgroup7 = $row['totalVolume'];
     }
     
     //Calculate total tree for Category 2
@@ -201,234 +216,275 @@
     
     
     /*-------------------- Categories 30 - 45 --------------------*/
-    $ProductionTreesSpgroup1SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 1  AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
+    $ProductionTreesSpgroup1SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 1  AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $ProductionTreesSpgroup1SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalProductionSpgroup1 = $row['totalProduction'];
+        $totalTreesSpgroup1 = $row['totalTrees'];
+        $totalVolume3045Spgroup1 = $row['totalVolume'];
     }
     
-    $ProductionTreesSpgroup2SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 2 AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
+    $ProductionTreesSpgroup2SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 2 AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $ProductionTreesSpgroup2SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalProductionSpgroup2 = $row['totalProduction'];
+        $totalTreesSpgroup2 = $row['totalTrees'];
+        $totalVolume3045Spgroup2 = $row['totalVolume'];
     }
     
     
-    $ProductionTreesSpgroup3SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 3 AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
+    $ProductionTreesSpgroup3SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 3 AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $ProductionTreesSpgroup3SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalProductionSpgroup3 = $row['totalProduction'];
+        $totalTreesSpgroup3 = $row['totalTrees'];
+        $totalVolume3045Spgroup3 = $row['totalVolume'];
     }
     
-    $ProductionTreesSpgroup4SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 4 AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
+    $ProductionTreesSpgroup4SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 4 AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $ProductionTreesSpgroup4SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalProductionSpgroup4 = $row['totalProduction'];
+        $totalTreesSpgroup4 = $row['totalTrees'];
+        $totalVolume3045Spgroup4 = $row['totalVolume'];
     }
     
-    $ProductionTreesSpgroup5SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 5 AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
+    $ProductionTreesSpgroup5SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 5 AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $ProductionTreesSpgroup5SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalProductionSpgroup5 = $row['totalProduction'];
+        $totalTreesSpgroup5 = $row['totalTrees'];
+        $totalVolume3045Spgroup5 = $row['totalVolume'];
     }
     
-    $ProductionTreesSpgroup6SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 6 AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
+    $ProductionTreesSpgroup6SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 6 AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $ProductionTreesSpgroup6SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalProductionSpgroup6 = $row['totalProduction'];
+        $totalTreesSpgroup6 = $row['totalTrees'];
+        $totalVolume3045Spgroup6 = $row['totalVolume'];
     }
     
-    $ProductionTreesSpgroup7SQL = "SELECT COUNT(*) AS totalProduction FROM newforestori WHERE spgroup = 7 AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
+    $ProductionTreesSpgroup7SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 7 AND Diameter>=30 AND Diameter<=45 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $ProductionTreesSpgroup7SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalProductionSpgroup7 = $row['totalProduction'];
+        $totalTreesSpgroup7 = $row['totalTrees'];
+        $totalVolume3045Spgroup7 = $row['totalVolume'];
     }
     
     //Calculate total tree for Category 3
-    $totalTreeCategory3 = $totalProductionSpgroup1 +  $totalProductionSpgroup2 + $totalProductionSpgroup3 + $totalProductionSpgroup4 + $totalProductionSpgroup5 + $totalProductionSpgroup6 + $totalProductionSpgroup7;
+    $totalTreeCategory3 = $totalTreesSpgroup1 +  $totalTreesSpgroup2 + $totalTreesSpgroup3 + $totalTreesSpgroup4 + $totalTreesSpgroup5 + $totalTreesSpgroup6 + $totalTreesSpgroup7;
     
     /*-------------------- Categories 45 - 60 --------------------*/
-    $DamageCrownSpgroup1SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 1 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
+    $DamageCrownSpgroup1SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 1 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageCrownSpgroup1SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalDamageCrownSpgroup1 = $row['totalDamageCrown'];
+        $totalTreesSpgroup1 = $row['totalTrees'];
+        $totalVolume4560Spgroup1 = $row['totalVolume'];
     }
     
-    $DamageCrownSpgroup2SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 2 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
+    $DamageCrownSpgroup2SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 2 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageCrownSpgroup2SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalDamageCrownSpgroup2 = $row['totalDamageCrown'];
+        $totalTreesSpgroup2 = $row['totalTrees'];
+        $totalVolume4560Spgroup2 = $row['totalVolume'];
     }
     
-    $DamageCrownSpgroup3SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 3 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
+    $DamageCrownSpgroup3SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 3 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageCrownSpgroup3SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalDamageCrownSpgroup3 = $row['totalDamageCrown'];
+        $totalTreesSpgroup3 = $row['totalTrees'];
+        $totalVolume4560Spgroup3 = $row['totalVolume'];
     }
     
-    $DamageCrownSpgroup4SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 4 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
+    $DamageCrownSpgroup4SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 4 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageCrownSpgroup4SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalDamageCrownSpgroup4 = $row['totalDamageCrown'];
+        $totalTreesSpgroup4 = $row['totalTrees'];
+        $totalVolume4560Spgroup4 = $row['totalVolume'];
     }
     
-    $DamageCrownSpgroup5SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 5 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
+    $DamageCrownSpgroup5SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 5 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageCrownSpgroup5SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalDamageCrownSpgroup5 = $row['totalDamageCrown'];
+        $totalTreesSpgroup5 = $row['totalTrees'];
+        $totalVolume4560Spgroup5 = $row['totalVolume'];
     }
     
-    $DamageCrownSpgroup6SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 6 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
+    $DamageCrownSpgroup6SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 6 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageCrownSpgroup6SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalDamageCrownSpgroup6 = $row['totalDamageCrown'];
+        $totalTreesSpgroup6 = $row['totalTrees'];
+        $totalVolume4560Spgroup6 = $row['totalVolume'];
     }
     
-    $DamageCrownSpgroup7SQL = "SELECT COUNT(*) AS totalDamageCrown FROM newforestori WHERE spgroup = 7 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
+    $DamageCrownSpgroup7SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 7 AND Diameter>=45 AND Diameter<=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageCrownSpgroup7SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalDamageCrownSpgroup7 = $row['totalDamageCrown'];
+        $totalTreesSpgroup7 = $row['totalTrees'];
+        $totalVolume4560Spgroup7 = $row['totalVolume'];
     }
     
     //Calculate total tree for Category 4
-    $totalTreeCategory4 = $totalDamageCrownSpgroup1 + $totalDamageCrownSpgroup2 + $totalDamageCrownSpgroup3 + $totalDamageCrownSpgroup4 + $totalDamageCrownSpgroup5 + $totalDamageCrownSpgroup6 + $totalDamageCrownSpgroup7;
+    $totalTreeCategory4 = $totalTreesSpgroup1 + $totalTreesSpgroup2 + $totalTreesSpgroup3 + $totalTreesSpgroup4 + $totalTreesSpgroup5 + $totalTreesSpgroup6 + $totalTreesSpgroup7;
     
     
     /*-------------------- Categories 60+ --------------------*/
-    $DamageStemSpgroup1SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 1 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
+    $DamageStemSpgroup1SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 1 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageStemSpgroup1SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalDamageStemSpgroup1 = $row['totalDamageStem'];
+        $totalTreesSpgroup1 = $row['totalTrees'];
+        $totalVolume60Spgroup1 = $row['totalVolume'];
     }
     
-    $DamageStemSpgroup2SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 2 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
+    $DamageStemSpgroup2SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 2 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageStemSpgroup2SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalDamageStemSpgroup2 = $row['totalDamageStem'];
+        $totalTreesSpgroup2 = $row['totalTrees'];
+        $totalVolume60Spgroup2 = $row['totalVolume'];
     }
     
-    $DamageStemSpgroup3SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 3 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
+    $DamageStemSpgroup3SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 3 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageStemSpgroup3SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalDamageStemSpgroup3 = $row['totalDamageStem'];
+        $totalTreesSpgroup3 = $row['totalTrees'];
+        $totalVolume60Spgroup3 = $row['totalVolume'];
     }
     
-    $DamageStemSpgroup4SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 4 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
+    $DamageStemSpgroup4SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 4 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageStemSpgroup4SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalDamageStemSpgroup4 = $row['totalDamageStem'];
+        $totalTreesSpgroup4 = $row['totalTrees'];
+        $totalVolume60Spgroup4 = $row['totalVolume'];
     }
     
-    $DamageStemSpgroup5SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 5 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
+    $DamageStemSpgroup5SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 5 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageStemSpgroup5SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalDamageStemSpgroup5 = $row['totalDamageStem'];
+        $totalTreesSpgroup5 = $row['totalTrees'];
+        $totalVolume60Spgroup5 = $row['totalVolume'];
     }
     
-    $DamageStemSpgroup6SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 6 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
+    $DamageStemSpgroup6SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 6 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageStemSpgroup6SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalDamageStemSpgroup6 = $row['totalDamageStem'];
+        $totalTreesSpgroup6 = $row['totalTrees'];
+        $totalVolume60Spgroup6 = $row['totalVolume'];
     }
     
-    $DamageStemSpgroup7SQL = "SELECT COUNT(*) AS totalDamageStem FROM newforestori WHERE spgroup = 7 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
+    $DamageStemSpgroup7SQL = "SELECT COUNT(*) AS totalTrees, SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 7 AND Diameter>=60 AND blockX = 1 AND blockY = 1";
     
     $result = mysqli_query($dbc, $DamageStemSpgroup7SQL);
     
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $totalDamageStemSpgroup7 = $row['totalDamageStem'];
+        $totalTreesSpgroup7 = $row['totalTrees'];
+        $totalVolume60Spgroup7 = $row['totalVolume'];
     }
     
     //Calculate total tree for Category 5
-    $totalTreeCategory5 = $totalDamageStemSpgroup1 + $totalDamageStemSpgroup2 + $totalDamageStemSpgroup3 + $totalDamageStemSpgroup4 + $totalDamageStemSpgroup5 + $totalDamageStemSpgroup6 + $totalDamageStemSpgroup7;
+    $totalTreeCategory5 = $totalTreesSpgroup1 + $totalTreesSpgroup2 + $totalTreesSpgroup3 + $totalTreesSpgroup4 + $totalTreesSpgroup5 + $totalTreesSpgroup6 + $totalTreesSpgroup7;
     
     /*-------------------- Calculate Total Tree For Every Categories --------------------*/
     
     //Calculate total tree Mersawa
-    $totalAllTreeMersawa = $totalTreeMersawa1 + $totalTreesSpgroup1 + $totalProductionSpgroup1 + $totalDamageCrownSpgroup1 + $totalDamageStemSpgroup1;
+    $totalAllTreeMersawa = $totalTreeMersawa1 + $totalTreesSpgroup1 + $totalTreesSpgroup1 + $totalTreesSpgroup1 + $totalTreesSpgroup1;
     
     //Calculate total tree Keruing
-    $totalAllTreeKeruing = $totalTreeKeruing1 + $totalTreesSpgroup2 + $totalProductionSpgroup2 + $totalDamageCrownSpgroup2 + $totalDamageStemSpgroup2;
+    $totalAllTreeKeruing = $totalTreeKeruing1 + $totalTreesSpgroup2 + $totalTreesSpgroup2 + $totalTreesSpgroup2 + $totalTreesSpgroup2;
     
     //Calculate total tree Dip Marketable
-    $totalAllTreeDipMarket = $totalTreeDipMarket1 + $totalTreesSpgroup3 + $totalProductionSpgroup3 + $totalDamageCrownSpgroup3 + $totalDamageStemSpgroup3;
+    $totalAllTreeDipMarket = $totalTreeDipMarket1 + $totalTreesSpgroup3 + $totalTreesSpgroup3 + $totalTreesSpgroup3 + $totalTreesSpgroup3;
     
     //Calculate total tree Dip non Market
-    $totalAllTreeDipNonMarket = $totalTreeDipNonMarket1 + $totalTreesSpgroup4 + $totalProductionSpgroup4 + $totalDamageCrownSpgroup4 + $totalDamageStemSpgroup4;
+    $totalAllTreeDipNonMarket = $totalTreeDipNonMarket1 + $totalTreesSpgroup4 + $totalTreesSpgroup4 + $totalTreesSpgroup4 + $totalTreesSpgroup4;
     
     //Calculate total tree Non Dip Market
-    $totalAllTreeNonDipMarket = $totalTreeNonDipMarket1 + $totalTreesSpgroup5 + $totalProductionSpgroup5 + $totalDamageCrownSpgroup5 + $totalDamageStemSpgroup5;
+    $totalAllTreeNonDipMarket = $totalTreeNonDipMarket1 + $totalTreesSpgroup5 + $totalTreesSpgroup5 + $totalTreesSpgroup5 + $totalTreesSpgroup5;
     
     //Calculate total tree Non Dip Non Market
-    $totalAllTreeNonDipNonMarket = $totalTreeNonDipNonMarket1 + $totalTreesSpgroup6 + $totalProductionSpgroup6 + $totalDamageCrownSpgroup6 + $totalDamageStemSpgroup6;
+    $totalAllTreeNonDipNonMarket = $totalTreeNonDipNonMarket1 + $totalTreesSpgroup6 + $totalTreesSpgroup6 + $totalTreesSpgroup6 + $totalTreesSpgroup6;
     
     //Calculate total tree Others
-    $totalAllTreeOthers = $totalTreeOthers1 + $totalTreesSpgroup7 + $totalProductionSpgroup7 + $totalDamageCrownSpgroup7 + $totalDamageStemSpgroup7;
+    $totalAllTreeOthers = $totalTreeOthers1 + $totalTreesSpgroup7 + $totalTreesSpgroup7 + $totalTreesSpgroup7 + $totalTreesSpgroup7;
     
     //Total all tree
     $totalAllTree = $totalTreeCategory1 + $totalTreeCategory2 + $totalTreeCategory3 + $totalTreeCategory4 + $totalTreeCategory5;
     
+    // total volume for group1 
+    $totalVolumeGroup1 = $totalVolumeMersawa1 + $totalVolume1530Spgroup1 + $totalVolume3045Spgroup1 + $totalVolume4560Spgroup1 + $totalVolume60Spgroup1;
+
+    // total volume for group2
+    $totalVolumeGroup2 = $totalVolumeKeruing1 + $totalVolume1530Spgroup2 + $totalVolume3045Spgroup2 + $totalVolume4560Spgroup2 + $totalVolume60Spgroup2;
+
+    // total volume for group3
+    $totalVolumeGroup3 = $totalVolumeDipMarket1 + $totalVolume1530Spgroup3 + $totalVolume3045Spgroup3 + $totalVolume4560Spgroup3 + $totalVolume60Spgroup3;
+
+    // total volume for group4
+    $totalVolumeGroup4 = $totalVolumeDipNonMarket1 + $totalVolume1530Spgroup4 + $totalVolume3045Spgroup4 + $totalVolume4560Spgroup4 + $totalVolume60Spgroup4;
+
+    // total volume for group5
+    $totalVolumeGroup5 = $totalVolumeNonDipMarket1 + $totalVolume1530Spgroup5 + $totalVolume3045Spgroup5 + $totalVolume4560Spgroup5 + $totalVolume60Spgroup5;
+
+    // total volume for group6
+    $totalVolumeGroup6 = $totalVolumeNonDipNonMarket1 + $totalVolume1530Spgroup6 + $totalVolume3045Spgroup6 + $totalVolume4560Spgroup6 + $totalVolume60Spgroup6;
+
+    // total volume for group7
+    $totalVolumeGroup7 = $totalVolumeOthers1 + $totalVolume1530Spgroup7 + $totalVolume3045Spgroup7 + $totalVolume4560Spgroup7 + $totalVolume60Spgroup7;
 
     ?>
 </head>
@@ -471,10 +527,22 @@
             <td> Group 1 </td>
             <td> <?php echo $totalTreeMersawa1; ?> </td>
             <td> <?php echo $totalTreesSpgroup1; ?> </td>
-            <td> <?php echo $totalProductionSpgroup1; ?> </td>
-            <td> <?php echo $totalDamageCrownSpgroup1; ?> </td>
-            <td> <?php echo $totalDamageStemSpgroup1; ?> </td>
+            <td> <?php echo $totalTreesSpgroup1; ?> </td>
+            <td> <?php echo $totalTreesSpgroup1; ?> </td>
+            <td> <?php echo $totalTreesSpgroup1; ?> </td>
             <td> <?php echo $totalAllTreeMersawa; ?> </td>
+        </tr>
+
+        <tr>
+            <td>Volume Group 1</td>
+            <td ></td>
+            <td> <?php echo number_format($totalVolumeMersawa1,2); ?> </td>
+            <td><?php echo number_format($totalVolume1530Spgroup1,2);?> </td>
+            <td><?php echo number_format($totalVolume3045Spgroup1,2);?> </td>
+            <td><?php echo number_format($totalVolume4560Spgroup1,2);?> </td>
+            <td><?php echo number_format($totalVolume60Spgroup1,2);?> </td>
+            <td>  <?php echo number_format($totalVolumeGroup1,2);?> </td>
+        
         </tr>
 
         <tr>
@@ -482,65 +550,145 @@
             <td> Group 2 </td>
             <td> <?php echo $totalTreeKeruing1; ?> </td>
             <td> <?php echo $totalTreesSpgroup2; ?> </td>
-            <td> <?php echo $totalProductionSpgroup2; ?> </td>
-            <td> <?php echo $totalDamageCrownSpgroup2; ?> </td>
-            <td> <?php echo $totalDamageStemSpgroup2; ?> </td>
+            <td> <?php echo $totalTreesSpgroup2; ?> </td>
+            <td> <?php echo $totalTreesSpgroup2; ?> </td>
+            <td> <?php echo $totalTreesSpgroup2; ?> </td>
             <td> <?php echo $totalAllTreeKeruing; ?> </td>
+        </tr>
+        <tr>
+            <td>Volume Group 2</td>
+            <td ></td>
+        
+            <td> <?php echo number_format($totalVolumeKeruing1,2); ?> </td>
+            <td> <?php echo number_format($totalVolume1530Spgroup2,2); ?> </td>
+            <td> <?php echo number_format($totalVolume3045Spgroup2,2); ?> </td>
+            <td> <?php echo number_format($totalVolume4560Spgroup2,2); ?> </td>
+            <td> <?php echo number_format($totalVolume60Spgroup2,2); ?> </td>
+            <td> <?php echo number_format($totalVolumeGroup2,2); ?> </td>
+
+           
         </tr>
         <tr>
             <td> Dip Marketable </td>
             <td> Group 3 </td>
             <td> <?php echo $totalTreeDipMarket1; ?> </td>
             <td> <?php echo $totalTreesSpgroup3; ?> </td>
-            <td> <?php echo $totalProductionSpgroup3; ?> </td>
-            <td> <?php echo $totalDamageCrownSpgroup3; ?> </td>
-            <td> <?php echo $totalDamageStemSpgroup3; ?> </td>
+            <td> <?php echo $totalTreesSpgroup3; ?> </td>
+            <td> <?php echo $totalTreesSpgroup3; ?> </td>
+            <td> <?php echo $totalTreesSpgroup3; ?> </td>
             <td> <?php echo $totalAllTreeDipMarket; ?> </td>
+        </tr>
+        <tr>
+            <td>Volume Group 3</td>
+            <td ></td>
+           
+            <td> <?php echo number_format($totalVolumeDipMarket1,2); ?> </td>
+            <td> <?php echo number_format($totalVolume1530Spgroup3,2); ?> </td>
+            <td> <?php echo number_format($totalVolume3045Spgroup3,2); ?> </td>
+            <td> <?php echo number_format($totalVolume4560Spgroup3,2); ?> </td>
+            <td> <?php echo number_format($totalVolume60Spgroup3,2); ?> </td>
+            <td> <?php echo number_format($totalVolumeGroup3,2); ?> </td>
+            
         </tr>
         <tr>
             <td> Dip non Market </td>
             <td> Group 4 </td>
             <td> <?php echo $totalTreeDipNonMarket1; ?> </td>
             <td> <?php echo $totalTreesSpgroup4; ?> </td>
-            <td> <?php echo $totalProductionSpgroup4; ?> </td>
-            <td> <?php echo $totalDamageCrownSpgroup4; ?> </td>
-            <td> <?php echo $totalDamageStemSpgroup4; ?> </td>
+            <td> <?php echo $totalTreesSpgroup4; ?> </td>
+            <td> <?php echo $totalTreesSpgroup4; ?> </td>
+            <td> <?php echo $totalTreesSpgroup4; ?> </td>
             <td> <?php echo $totalAllTreeDipNonMarket; ?> </td>
+        </tr>
+        <tr>
+            <td>Volume Group 4</td>
+            <td ></td>
+            
+            <td> <?php echo number_format($totalVolumeDipNonMarket1,2); ?> </td>
+            <td> <?php echo number_format($totalVolume1530Spgroup4,2); ?> </td>
+            <td> <?php echo number_format($totalVolume3045Spgroup4,2); ?> </td>
+            <td> <?php echo number_format($totalVolume4560Spgroup4,2); ?> </td>
+            <td> <?php echo number_format($totalVolume60Spgroup4,2); ?> </td>
+            <td> <?php echo number_format($totalVolumeGroup4,2); ?> </td>
+
+            
+            
         </tr>
         <tr>
             <td> Non Dip Market </td>
             <td> Group 5 </td>
             <td> <?php echo $totalTreeNonDipMarket1; ?> </td>
             <td> <?php echo $totalTreesSpgroup5; ?> </td>
-            <td> <?php echo $totalProductionSpgroup5; ?> </td>
-            <td> <?php echo $totalDamageCrownSpgroup5; ?> </td>
-            <td> <?php echo $totalDamageStemSpgroup5; ?> </td>
+            <td> <?php echo $totalTreesSpgroup5; ?> </td>
+            <td> <?php echo $totalTreesSpgroup5; ?> </td>
+            <td> <?php echo $totalTreesSpgroup5; ?> </td>
             <td> <?php echo $totalAllTreeNonDipMarket; ?> </td>
+        </tr>
+        <tr>
+            <td>Volume Group 5</td>
+            <td ></td>
+           
+            <td> <?php echo number_format($totalVolumeNonDipMarket1,2); ?> </td>
+            <td> <?php echo number_format($totalVolume1530Spgroup5,2); ?> </td>
+            <td> <?php echo number_format($totalVolume3045Spgroup5,2); ?> </td>
+            <td> <?php echo number_format($totalVolume4560Spgroup5,2); ?> </td>
+            <td> <?php echo number_format($totalVolume60Spgroup5,2); ?> </td>
+            <td> <?php echo number_format($totalVolumeGroup5,2); ?> </td>
+           
         </tr>
         <tr>
             <td> Non Dip Non Market </td>
             <td> Group 6 </td>
             <td> <?php echo $totalTreeNonDipNonMarket1; ?> </td>
             <td> <?php echo $totalTreesSpgroup6; ?> </td>
-            <td> <?php echo $totalProductionSpgroup6; ?> </td>
-            <td> <?php echo $totalDamageCrownSpgroup6; ?> </td>
-            <td> <?php echo $totalDamageStemSpgroup6; ?> </td>
+            <td> <?php echo $totalTreesSpgroup6; ?> </td>
+            <td> <?php echo $totalTreesSpgroup6; ?> </td>
+            <td> <?php echo $totalTreesSpgroup6; ?> </td>
             <td> <?php echo $totalAllTreeNonDipNonMarket; ?> </td>
         </tr>
+
+        <tr></tr>
+            <td>Volume Group 6</td>
+            <td ></td>
+            
+            <td> <?php echo number_format( $totalVolumeNonDipNonMarket1, 2); ?> </td>
+            <td> <?php echo number_format($totalVolume1530Spgroup6, 2); ?> </td>
+            <td> <?php echo number_format($totalVolume3045Spgroup6, 2); ?> </td>
+            <td> <?php echo number_format($totalVolume4560Spgroup6, 2); ?> </td>
+            <td> <?php echo number_format($totalVolume60Spgroup6, 2); ?> </td>
+            <td> <?php echo number_format($totalVolumeGroup6, 2); ?> </td>
+            
+
+        
         <tr>
             <td> Others </td>
             <td> Group 7 </td>
             <td> <?php echo $totalTreeOthers1; ?> </td>
             <td> <?php echo $totalTreesSpgroup7; ?> </td>
-            <td> <?php echo $totalProductionSpgroup7; ?> </td>
-            <td> <?php echo $totalDamageCrownSpgroup7; ?> </td>
-            <td> <?php echo $totalDamageStemSpgroup7; ?> </td>
+            <td> <?php echo $totalTreesSpgroup7; ?> </td>
+            <td> <?php echo $totalTreesSpgroup7; ?> </td>
+            <td> <?php echo $totalTreesSpgroup7; ?> </td>
             <td> <?php echo $totalAllTreeOthers; ?> </td>
         </tr>
+
+        <tr>
+            <td>Volume Group 7</td>
+            <td ></td>
+            
+            <td> <?php echo number_format( $totalVolumeOthers1,2); ?> </td>
+            <td> <?php echo number_format($totalVolume1530Spgroup7,2); ?> </td>
+            <td> <?php echo number_format($totalVolume3045Spgroup7,2); ?> </td>
+            <td> <?php echo number_format($totalVolume4560Spgroup7,2); ?> </td>
+            <td> <?php echo number_format($totalVolume60Spgroup7,2); ?> </td>
+            <td> <?php echo number_format($totalVolumeGroup7,2); ?> </td>
+            
+        </tr>
+       
         <tr>
             <td></td>
             <td></td>
             <td> <?php echo $totalTreeCategory1; ?> </td>
+          
             <td> <?php echo $totalTreeCategory2; ?> </td>
             <td> <?php echo $totalTreeCategory3; ?> </td>
             <td> <?php echo $totalTreeCategory4; ?> </td>
