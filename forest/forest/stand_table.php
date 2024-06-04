@@ -491,16 +491,16 @@
 <body>
     <div class="container">
         <header>
-            <h1>Stand Table</h1>
+            <h1>Stand Table 45</h1>
         </header>
         <main>
         <table border="1" width="100%">
         <tr>
             <th>
-                Species Group
+                Species Name
             </th>
             <th>
-                Species Name
+                Species Group
             </th>
             <th>
                 5 - 15

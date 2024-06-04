@@ -76,7 +76,7 @@ $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) OR die ('Could not
 mysqli_set_charset($dbc, 'utf8');
 
 
-
+/*-------------------------------  Volume ---------------------------------------*/
 $VolumeMersawaSQL = "SELECT SUM(volume) AS totalVolume FROM newforestori WHERE spgroup = 1";
 $result = mysqli_query($dbc, $VolumeMersawaSQL);
 
@@ -147,6 +147,8 @@ if ($result) {
     $totalVolumeOthers = 0; // Handle the case where there are no rows returned
 }
 
+
+/*-------------------------------  Number of tree  ---------------------------------------*/
 $CountTreesSpgroup1SQL = "SELECT COUNT(*) AS totalTrees FROM newforestori WHERE spgroup = 1";
 $result = mysqli_query($dbc, $CountTreesSpgroup1SQL);
 
@@ -206,6 +208,7 @@ if ($result) {
     $totalTreesSpgroup7 = $row['totalTrees'];
 }
 
+/*-------------------------------  Production  ---------------------------------------*/
 $ProductionTreesSpgroup1SQL = "SELECT SUM(production) AS totalProduction FROM newforestori WHERE spgroup = 1";
 
 $result = mysqli_query($dbc, $ProductionTreesSpgroup1SQL);
@@ -270,6 +273,7 @@ if ($result) {
     $totalProductionSpgroup7 = $row['totalProduction'];
 }
 
+/*-------------------------------  Damage Crown  ---------------------------------------*/
 $DamageCrownSpgroup1SQL = "SELECT SUM(damage_crown) AS totalDamageCrown FROM newforestori WHERE spgroup = 1";
 
 $result = mysqli_query($dbc, $DamageCrownSpgroup1SQL);
@@ -333,6 +337,7 @@ if ($result) {
     $totalDamageCrownSpgroup7 = $row['totalDamageCrown'];
 }
 
+/*-------------------------------  Damage stem  ---------------------------------------*/
 $DamageStemSpgroup1SQL = "SELECT SUM(damage_stem) AS totalDamageStem FROM newforestori WHERE spgroup = 1";
 
 $result = mysqli_query($dbc, $DamageStemSpgroup1SQL);
@@ -396,13 +401,15 @@ if ($result) {
     $totalDamageStemSpgroup7 = $row['totalDamageStem'];
 }
 
+
+/*-------------------------------  Growth30 ---------------------------------------*/
 $Growth30Spgroup1SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM newforestori WHERE spgroup = 1";
 
 $result = mysqli_query($dbc, $Growth30Spgroup1SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalGrowth30Spgroup1 = $row['totalGrowth30'];
+    $totalGrowth30Spgroup1 = $row['totalGrowth30']/10000;
 }
 
 $Growth30Spgroup2SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM newforestori WHERE spgroup = 2";
@@ -411,7 +418,7 @@ $result = mysqli_query($dbc, $Growth30Spgroup2SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalGrowth30Spgroup2 = $row['totalGrowth30'];
+    $totalGrowth30Spgroup2 = $row['totalGrowth30']/10000;
 }
 
 $Growth30Spgroup3SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM newforestori WHERE spgroup = 3";
@@ -420,7 +427,7 @@ $result = mysqli_query($dbc, $Growth30Spgroup3SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalGrowth30Spgroup3 = $row['totalGrowth30'];
+    $totalGrowth30Spgroup3 = $row['totalGrowth30']/10000;
 }
 
 $Growth30Spgroup4SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM newforestori WHERE spgroup = 4";
@@ -429,7 +436,7 @@ $result = mysqli_query($dbc, $Growth30Spgroup4SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalGrowth30Spgroup4 = $row['totalGrowth30'];
+    $totalGrowth30Spgroup4 = $row['totalGrowth30']/10000;
 }
 
 $Growth30Spgroup5SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM newforestori WHERE spgroup = 5";
@@ -438,7 +445,7 @@ $result = mysqli_query($dbc, $Growth30Spgroup5SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalGrowth30Spgroup5 = $row['totalGrowth30'];
+    $totalGrowth30Spgroup5 = $row['totalGrowth30']/10000;
 }
 
 $Growth30Spgroup6SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM newforestori WHERE spgroup = 6";
@@ -447,7 +454,7 @@ $result = mysqli_query($dbc, $Growth30Spgroup6SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalGrowth30Spgroup6 = $row['totalGrowth30'];
+    $totalGrowth30Spgroup6 = $row['totalGrowth30']/10000;
 }
 
 $Growth30Spgroup7SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM newforestori WHERE spgroup = 7";
@@ -456,8 +463,75 @@ $result = mysqli_query($dbc, $Growth30Spgroup7SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalGrowth30Spgroup7 = $row['totalGrowth30'];
+    $totalGrowth30Spgroup7 = $row['totalGrowth30']/10000;
 }
+
+/*-------------------------------  Production30  ---------------------------------------*/
+$Production30Spgroup1SQL = "SELECT SUM(Production30) AS totalProduction30 FROM newforestori WHERE spgroup = 1";
+
+$result = mysqli_query($dbc, $Production30Spgroup1SQL);
+
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+    $totalProduction30Spgroup1 = $row['totalProduction30']/10000;
+}
+
+$Production30Spgroup2SQL = "SELECT SUM(Production30) AS totalProduction30 FROM newforestori WHERE spgroup = 2";
+
+$result = mysqli_query($dbc, $Production30Spgroup2SQL);
+
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+    $totalProduction30Spgroup2 = $row['totalProduction30']/10000;
+}
+
+$Production30Spgroup3SQL = "SELECT SUM(Production30) AS totalProduction30 FROM newforestori WHERE spgroup = 3";
+
+$result = mysqli_query($dbc, $Production30Spgroup3SQL);
+
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+    $totalProduction30Spgroup3 = $row['totalProduction30']/10000;
+}
+
+$Production30Spgroup4SQL = "SELECT SUM(Production30) AS totalProduction30 FROM newforestori WHERE spgroup = 4";
+
+$result = mysqli_query($dbc, $Production30Spgroup4SQL);
+
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+    $totalProduction30Spgroup4 = $row['totalProduction30']/10000;
+}
+
+$Production30Spgroup5SQL = "SELECT SUM(Production30) AS totalProduction30 FROM newforestori WHERE spgroup = 5";
+
+$result = mysqli_query($dbc, $Production30Spgroup5SQL);
+
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+    $totalProduction30Spgroup5 = $row['totalProduction30']/10000;
+}
+
+$Production30Spgroup6SQL = "SELECT SUM(Production30) AS totalProduction30 FROM newforestori WHERE spgroup = 6";
+
+$result = mysqli_query($dbc, $Production30Spgroup6SQL);
+
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+    $totalProduction30Spgroup6 = $row['totalProduction30']/10000;
+}
+
+$Production30Spgroup7SQL = "SELECT SUM(Production30) AS totalProduction30 FROM newforestori WHERE spgroup = 7";
+
+$result = mysqli_query($dbc, $Production30Spgroup7SQL);
+
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+    $totalProduction30Spgroup7 = $row['totalProduction30']/10000;
+}
+
+
+
 
 
 ?>
@@ -491,71 +565,81 @@ if ($result) {
             <th>
                 Growth 30
             </th>
+            <th>
+                Production 30
+            </th>
         </tr>
 
         <tr>
             <td> Mersawa </td>
-            <td> <?php echo $totalVolumeMersawa; ?> </td>
+            <td> <?php echo number_format($totalVolumeMersawa, 2); ?> </td>
             <td> <?php echo $totalTreesSpgroup1; ?> </td>
-            <td> <?php echo $totalProductionSpgroup1; ?> </td>
+            <td> <?php echo number_format($totalProductionSpgroup1,2); ?> </td>
             <td> <?php echo $totalDamageCrownSpgroup1; ?> </td>
             <td> <?php echo $totalDamageStemSpgroup1; ?> </td>
-            <td> <?php echo $totalGrowth30Spgroup1; ?> </td>
+            <td> <?php echo number_format($totalGrowth30Spgroup1,2); ?> </td>
+            <td> <?php echo number_format($totalProduction30Spgroup1,2); ?> </td>
         </tr>
 
         <tr>
             <td> Keruing </td>
-            <td> <?php echo $totalVolumeKeruing; ?> </td>
+            <td> <?php echo number_format($totalVolumeKeruing,2); ?> </td>
             <td> <?php echo $totalTreesSpgroup2; ?> </td>
-            <td> <?php echo $totalProductionSpgroup2; ?> </td>
+            <td> <?php echo number_format($totalProductionSpgroup2,2); ?> </td>
             <td> <?php echo $totalDamageCrownSpgroup2; ?> </td>
             <td> <?php echo $totalDamageStemSpgroup2; ?> </td>
-            <td> <?php echo $totalGrowth30Spgroup2; ?> </td>
+            <td> <?php echo number_format($totalGrowth30Spgroup2,2); ?> </td>
+            <td> <?php echo number_format($totalProduction30Spgroup2,2); ?> </td>
         </tr>
         <tr>
             <td> Dip Marketable </td>
-            <td> <?php echo $totalVolumeDipMarket; ?> </td>
+            <td> <?php echo number_format($totalVolumeDipMarket,2); ?> </td>
             <td> <?php echo $totalTreesSpgroup3; ?> </td>
-            <td> <?php echo $totalProductionSpgroup3; ?> </td>
+            <td> <?php echo number_format($totalProductionSpgroup3,2); ?> </td>
             <td> <?php echo $totalDamageCrownSpgroup3; ?> </td>
             <td> <?php echo $totalDamageStemSpgroup3; ?> </td>
-            <td> <?php echo $totalGrowth30Spgroup3; ?> </td>
+            <td> <?php echo number_format($totalGrowth30Spgroup3,2); ?> </td>
+            <td> <?php echo number_format($totalProduction30Spgroup3,2); ?> </td>
         </tr>
         <tr>
             <td> Dip non Market </td>
-            <td> <?php echo $totalVolumeDipNonMarket; ?> </td>
+            <td> <?php echo number_format($totalVolumeDipNonMarket,2); ?> </td>
             <td> <?php echo $totalTreesSpgroup4; ?> </td>
-            <td> <?php echo $totalProductionSpgroup4; ?> </td>
+            <td> <?php echo number_format($totalProductionSpgroup4,2); ?> </td>
             <td> <?php echo $totalDamageCrownSpgroup4; ?> </td>
             <td> <?php echo $totalDamageStemSpgroup4; ?> </td>
-            <td> <?php echo $totalGrowth30Spgroup4; ?> </td>
+            <td> <?php echo number_format($totalGrowth30Spgroup4,2); ?> </td>
+            <td> <?php echo number_format($totalProduction30Spgroup4,2); ?> </td>
         </tr>
         <tr>
             <td> Non Dip Market </td>
-            <td> <?php echo $totalVolumeNonDipMarket; ?> </td>
+            <td> <?php echo number_format($totalVolumeNonDipMarket,2); ?> </td>
             <td> <?php echo $totalTreesSpgroup5; ?> </td>
-            <td> <?php echo $totalProductionSpgroup5; ?> </td>
+            <td> <?php echo number_format($totalProductionSpgroup5,2); ?> </td>
             <td> <?php echo $totalDamageCrownSpgroup5; ?> </td>
             <td> <?php echo $totalDamageStemSpgroup5; ?> </td>
-            <td> <?php echo $totalGrowth30Spgroup5; ?> </td>
+            <td> <?php echo number_format($totalGrowth30Spgroup5,2); ?> </td>
+            <td> <?php echo number_format($totalProduction30Spgroup5,2); ?> </td>
         </tr>
         <tr>
             <td> Non Dip Non Market </td>
-            <td> <?php echo $totalVolumeNonDipNonMarket; ?> </td>
+            <td> <?php echo number_format($totalVolumeNonDipNonMarket,2); ?> </td>
             <td> <?php echo $totalTreesSpgroup6; ?> </td>
-            <td> <?php echo $totalProductionSpgroup6; ?> </td>
+            <td> <?php echo number_format($totalProductionSpgroup6,2); ?> </td>
             <td> <?php echo $totalDamageCrownSpgroup6; ?> </td>
             <td> <?php echo $totalDamageStemSpgroup6; ?> </td>
-            <td> <?php echo $totalGrowth30Spgroup6; ?> </td>
+            <td> <?php echo number_format($totalGrowth30Spgroup6,2); ?> </td>
+            <td> <?php echo number_format($totalProduction30Spgroup6,2); ?> </td>
         </tr>
         <tr>
             <td> others </td>
-            <td> <?php echo $totalVolumeOthers; ?> </td>
+            <td> <?php echo number_format($totalVolumeOthers,2); ?> </td>
             <td> <?php echo $totalTreesSpgroup7; ?> </td>
-            <td> <?php echo $totalProductionSpgroup7; ?> </td>
+            <td> <?php echo number_format($totalProductionSpgroup7,2); ?> </td>
             <td> <?php echo $totalDamageCrownSpgroup7; ?> </td>
             <td> <?php echo $totalDamageStemSpgroup7; ?> </td>
-            <td> <?php echo $totalGrowth30Spgroup7; ?> </td>
+            <td> <?php echo number_format($totalGrowth30Spgroup7,2); ?> </td>
+            <td> <?php echo number_format($totalProduction30Spgroup7,2); ?> </td>
         </tr>
     </table>
         </main>
