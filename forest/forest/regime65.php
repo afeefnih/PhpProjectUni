@@ -77,7 +77,7 @@ mysqli_set_charset($dbc, 'utf8');
 
 
 /*-------------------------------  Volume ---------------------------------------*/
-$VolumeMersawaSQL = "SELECT SUM(volume) AS totalVolume FROM regime50 WHERE spgroup = 1";
+$VolumeMersawaSQL = "SELECT SUM(volume) AS totalVolume FROM regime65 WHERE spgroup = 1";
 $result = mysqli_query($dbc, $VolumeMersawaSQL);
 
 if ($result) {
@@ -87,7 +87,7 @@ if ($result) {
     $totalVolumeMersawa = 0; // Handle the case where there are no rows returned
 }
 
-$VolumeKeruingSQL = "SELECT SUM(volume) AS totalVolume FROM regime50 WHERE spgroup = 2";
+$VolumeKeruingSQL = "SELECT SUM(volume) AS totalVolume FROM regime65 WHERE spgroup = 2";
 $result = mysqli_query($dbc, $VolumeKeruingSQL);
 
 if ($result) {
@@ -97,7 +97,7 @@ if ($result) {
     $totalVolumeKeruing = 0; // Handle the case where there are no rows returned
 }
 
-$VolumeDipMarketSQL = "SELECT SUM(volume) AS totalVolume FROM regime50 WHERE spgroup = 3";
+$VolumeDipMarketSQL = "SELECT SUM(volume) AS totalVolume FROM regime65 WHERE spgroup = 3";
 $result = mysqli_query($dbc, $VolumeDipMarketSQL);
 
 if ($result) {
@@ -107,7 +107,7 @@ if ($result) {
     $totalVolumeDipMarket = 0; // Handle the case where there are no rows returned
 }
 
-$VolumeDipNonMarketSQL = "SELECT SUM(volume) AS totalVolume FROM regime50 WHERE spgroup = 4";
+$VolumeDipNonMarketSQL = "SELECT SUM(volume) AS totalVolume FROM regime65 WHERE spgroup = 4";
 $result = mysqli_query($dbc, $VolumeDipNonMarketSQL);
 
 if ($result) {
@@ -117,7 +117,7 @@ if ($result) {
     $totalVolumeDipNonMarket = 0; // Handle the case where there are no rows returned
 }
 
-$VolumeNonDipMarketSQL = "SELECT SUM(volume) AS totalVolume FROM regime50 WHERE spgroup = 5";
+$VolumeNonDipMarketSQL = "SELECT SUM(volume) AS totalVolume FROM regime65 WHERE spgroup = 5";
 $result = mysqli_query($dbc, $VolumeNonDipMarketSQL);
 
 if ($result) {
@@ -127,7 +127,7 @@ if ($result) {
     $totalVolumeNonDipMarket = 0; // Handle the case where there are no rows returned
 }
 
-$VolumeNonDipNonMarketSQL = "SELECT SUM(volume) AS totalVolume FROM regime50 WHERE spgroup = 6";
+$VolumeNonDipNonMarketSQL = "SELECT SUM(volume) AS totalVolume FROM regime65 WHERE spgroup = 6";
 $result = mysqli_query($dbc, $VolumeNonDipNonMarketSQL);
 
 if ($result) {
@@ -137,7 +137,7 @@ if ($result) {
     $totalVolumeNonDipNonMarket = 0; // Handle the case where there are no rows returned
 }
 
-$VolumeOthersSQL = "SELECT SUM(volume) AS totalVolume FROM regime50 WHERE spgroup = 7";
+$VolumeOthersSQL = "SELECT SUM(volume) AS totalVolume FROM regime65 WHERE spgroup = 7";
 $result = mysqli_query($dbc, $VolumeOthersSQL);
 
 if ($result) {
@@ -149,7 +149,7 @@ if ($result) {
 
 
 /*-------------------------------  Number of tree  ---------------------------------------*/
-$CountTreesSpgroup1SQL = "SELECT COUNT(*) AS totalTrees FROM regime50 WHERE spgroup = 1";
+$CountTreesSpgroup1SQL = "SELECT COUNT(*) AS totalTrees FROM regime65 WHERE spgroup = 1";
 $result = mysqli_query($dbc, $CountTreesSpgroup1SQL);
 
 if ($result) {
@@ -157,7 +157,7 @@ if ($result) {
     $totalTreesSpgroup1 = $row['totalTrees'];
 }
 
-$CountTreesSpgroup2SQL = "SELECT COUNT(*) AS totalTrees FROM regime50 WHERE spgroup = 2";
+$CountTreesSpgroup2SQL = "SELECT COUNT(*) AS totalTrees FROM regime65 WHERE spgroup = 2";
 $result = mysqli_query($dbc, $CountTreesSpgroup2SQL);
 
 if ($result) {
@@ -165,7 +165,7 @@ if ($result) {
     $totalTreesSpgroup2 = $row['totalTrees'];
 }
 
-$CountTreesSpgroup3SQL = "SELECT COUNT(*) AS totalTrees FROM regime50 WHERE spgroup = 3";
+$CountTreesSpgroup3SQL = "SELECT COUNT(*) AS totalTrees FROM regime65 WHERE spgroup = 3";
 $result = mysqli_query($dbc, $CountTreesSpgroup3SQL);
 
 if ($result) {
@@ -173,7 +173,7 @@ if ($result) {
     $totalTreesSpgroup3 = $row['totalTrees'];
 }
 
-$CountTreesSpgroup4SQL = "SELECT COUNT(*) AS totalTrees FROM regime50 WHERE spgroup = 4";
+$CountTreesSpgroup4SQL = "SELECT COUNT(*) AS totalTrees FROM regime65 WHERE spgroup = 4";
 $result = mysqli_query($dbc, $CountTreesSpgroup4SQL);
 
 if ($result) {
@@ -181,7 +181,7 @@ if ($result) {
     $totalTreesSpgroup4 = $row['totalTrees'];
 }
 
-$CountTreesSpgroup5SQL = "SELECT COUNT(*) AS totalTrees FROM regime50 WHERE spgroup = 5";
+$CountTreesSpgroup5SQL = "SELECT COUNT(*) AS totalTrees FROM regime65 WHERE spgroup = 5";
 
 $result = mysqli_query($dbc, $CountTreesSpgroup5SQL);
 
@@ -190,7 +190,7 @@ if ($result) {
     $totalTreesSpgroup5 = $row['totalTrees'];
 }
 
-$CountTreesSpgroup6SQL = "SELECT COUNT(*) AS totalTrees FROM regime50 WHERE spgroup = 6";
+$CountTreesSpgroup6SQL = "SELECT COUNT(*) AS totalTrees FROM regime65 WHERE spgroup = 6";
 
 $result = mysqli_query($dbc, $CountTreesSpgroup6SQL);
 
@@ -199,7 +199,7 @@ if ($result) {
     $totalTreesSpgroup6 = $row['totalTrees'];
 }
 
-$CountTreesSpgroup7SQL = "SELECT COUNT(*) AS totalTrees FROM regime50 WHERE spgroup = 7";
+$CountTreesSpgroup7SQL = "SELECT COUNT(*) AS totalTrees FROM regime65 WHERE spgroup = 7";
 
 $result = mysqli_query($dbc, $CountTreesSpgroup7SQL);
 
@@ -209,7 +209,7 @@ if ($result) {
 }
 
 /*-------------------------------  Production  ---------------------------------------*/
-$ProductionTreesSpgroup1SQL = "SELECT SUM(production) AS totalProduction FROM regime50 WHERE spgroup = 1";
+$ProductionTreesSpgroup1SQL = "SELECT SUM(production) AS totalProduction FROM regime65 WHERE spgroup = 1";
 
 $result = mysqli_query($dbc, $ProductionTreesSpgroup1SQL);
 
@@ -218,7 +218,7 @@ if ($result) {
     $totalProductionSpgroup1 = $row['totalProduction'];
 }
 
-$ProductionTreesSpgroup2SQL = "SELECT SUM(production) AS totalProduction FROM regime50 WHERE spgroup = 2";
+$ProductionTreesSpgroup2SQL = "SELECT SUM(production) AS totalProduction FROM regime65 WHERE spgroup = 2";
 
 $result = mysqli_query($dbc, $ProductionTreesSpgroup2SQL);
 
@@ -228,7 +228,7 @@ if ($result) {
 }
 
 
-$ProductionTreesSpgroup3SQL = "SELECT SUM(production) AS totalProduction FROM regime50 WHERE spgroup = 3";
+$ProductionTreesSpgroup3SQL = "SELECT SUM(production) AS totalProduction FROM regime65 WHERE spgroup = 3";
 
 $result = mysqli_query($dbc, $ProductionTreesSpgroup3SQL);
 
@@ -237,7 +237,7 @@ if ($result) {
     $totalProductionSpgroup3 = $row['totalProduction'];
 }
 
-$ProductionTreesSpgroup4SQL = "SELECT SUM(production) AS totalProduction FROM regime50 WHERE spgroup = 4";
+$ProductionTreesSpgroup4SQL = "SELECT SUM(production) AS totalProduction FROM regime65 WHERE spgroup = 4";
 
 $result = mysqli_query($dbc, $ProductionTreesSpgroup4SQL);
 
@@ -246,7 +246,7 @@ if ($result) {
     $totalProductionSpgroup4 = $row['totalProduction'];
 }
 
-$ProductionTreesSpgroup5SQL = "SELECT SUM(production) AS totalProduction FROM regime50 WHERE spgroup = 5";
+$ProductionTreesSpgroup5SQL = "SELECT SUM(production) AS totalProduction FROM regime65 WHERE spgroup = 5";
 
 $result = mysqli_query($dbc, $ProductionTreesSpgroup5SQL);
 
@@ -255,7 +255,7 @@ if ($result) {
     $totalProductionSpgroup5 = $row['totalProduction'];
 }
 
-$ProductionTreesSpgroup6SQL = "SELECT SUM(production) AS totalProduction FROM regime50 WHERE spgroup = 6";
+$ProductionTreesSpgroup6SQL = "SELECT SUM(production) AS totalProduction FROM regime65 WHERE spgroup = 6";
 
 $result = mysqli_query($dbc, $ProductionTreesSpgroup6SQL);
 
@@ -264,7 +264,7 @@ if ($result) {
     $totalProductionSpgroup6 = $row['totalProduction'];
 }
 
-$ProductionTreesSpgroup7SQL = "SELECT SUM(production) AS totalProduction FROM regime50 WHERE spgroup = 7";
+$ProductionTreesSpgroup7SQL = "SELECT SUM(production) AS totalProduction FROM regime65 WHERE spgroup = 7";
 
 $result = mysqli_query($dbc, $ProductionTreesSpgroup7SQL);
 
@@ -274,7 +274,7 @@ if ($result) {
 }
 
 /*-------------------------------  Damage Crown  ---------------------------------------*/
-$DamageCrownSpgroup1SQL = "SELECT SUM(damage_crown) AS totalDamageCrown FROM regime50 WHERE spgroup = 1";
+$DamageCrownSpgroup1SQL = "SELECT SUM(damage_crown) AS totalDamageCrown FROM regime65 WHERE spgroup = 1";
 
 $result = mysqli_query($dbc, $DamageCrownSpgroup1SQL);
 
@@ -283,7 +283,7 @@ if ($result) {
     $totalDamageCrownSpgroup1 = $row['totalDamageCrown'];
 }
 
-$DamageCrownSpgroup2SQL = "SELECT SUM(damage_crown) AS totalDamageCrown FROM regime50 WHERE spgroup = 2";
+$DamageCrownSpgroup2SQL = "SELECT SUM(damage_crown) AS totalDamageCrown FROM regime65 WHERE spgroup = 2";
 
 $result = mysqli_query($dbc, $DamageCrownSpgroup2SQL);
 
@@ -292,7 +292,7 @@ if ($result) {
     $totalDamageCrownSpgroup2 = $row['totalDamageCrown'];
 }
 
-$DamageCrownSpgroup3SQL = "SELECT SUM(damage_crown) AS totalDamageCrown FROM regime50 WHERE spgroup = 3";
+$DamageCrownSpgroup3SQL = "SELECT SUM(damage_crown) AS totalDamageCrown FROM regime65 WHERE spgroup = 3";
 
 $result = mysqli_query($dbc, $DamageCrownSpgroup3SQL);
 
@@ -301,7 +301,7 @@ if ($result) {
     $totalDamageCrownSpgroup3 = $row['totalDamageCrown'];
 }
 
-$DamageCrownSpgroup4SQL = "SELECT SUM(damage_crown) AS totalDamageCrown FROM regime50 WHERE spgroup = 4";
+$DamageCrownSpgroup4SQL = "SELECT SUM(damage_crown) AS totalDamageCrown FROM regime65 WHERE spgroup = 4";
 
 $result = mysqli_query($dbc, $DamageCrownSpgroup4SQL);
 
@@ -310,7 +310,7 @@ if ($result) {
     $totalDamageCrownSpgroup4 = $row['totalDamageCrown'];
 }
 
-$DamageCrownSpgroup5SQL = "SELECT SUM(damage_crown) AS totalDamageCrown FROM regime50 WHERE spgroup = 5";
+$DamageCrownSpgroup5SQL = "SELECT SUM(damage_crown) AS totalDamageCrown FROM regime65 WHERE spgroup = 5";
 
 $result = mysqli_query($dbc, $DamageCrownSpgroup5SQL);
 
@@ -319,7 +319,7 @@ if ($result) {
     $totalDamageCrownSpgroup5 = $row['totalDamageCrown'];
 }
 
-$DamageCrownSpgroup6SQL = "SELECT SUM(damage_crown) AS totalDamageCrown FROM regime50 WHERE spgroup = 6";
+$DamageCrownSpgroup6SQL = "SELECT SUM(damage_crown) AS totalDamageCrown FROM regime65 WHERE spgroup = 6";
 
 $result = mysqli_query($dbc, $DamageCrownSpgroup6SQL);
 
@@ -328,7 +328,7 @@ if ($result) {
     $totalDamageCrownSpgroup6 = $row['totalDamageCrown'];
 }
 
-$DamageCrownSpgroup7SQL = "SELECT SUM(damage_crown) AS totalDamageCrown FROM regime50 WHERE spgroup = 7";
+$DamageCrownSpgroup7SQL = "SELECT SUM(damage_crown) AS totalDamageCrown FROM regime65 WHERE spgroup = 7";
 
 $result = mysqli_query($dbc, $DamageCrownSpgroup7SQL);
 
@@ -338,7 +338,7 @@ if ($result) {
 }
 
 /*-------------------------------  Damage stem  ---------------------------------------*/
-$DamageStemSpgroup1SQL = "SELECT SUM(damage_stem) AS totalDamageStem FROM regime50 WHERE spgroup = 1";
+$DamageStemSpgroup1SQL = "SELECT SUM(damage_stem) AS totalDamageStem FROM regime65 WHERE spgroup = 1";
 
 $result = mysqli_query($dbc, $DamageStemSpgroup1SQL);
 
@@ -347,7 +347,7 @@ if ($result) {
     $totalDamageStemSpgroup1 = $row['totalDamageStem'];
 }
 
-$DamageStemSpgroup2SQL = "SELECT SUM(damage_stem) AS totalDamageStem FROM regime50 WHERE spgroup = 2";
+$DamageStemSpgroup2SQL = "SELECT SUM(damage_stem) AS totalDamageStem FROM regime65 WHERE spgroup = 2";
 
 $result = mysqli_query($dbc, $DamageStemSpgroup2SQL);
 
@@ -356,7 +356,7 @@ if ($result) {
     $totalDamageStemSpgroup2 = $row['totalDamageStem'];
 }
 
-$DamageStemSpgroup3SQL = "SELECT SUM(damage_stem) AS totalDamageStem FROM regime50 WHERE spgroup = 3";
+$DamageStemSpgroup3SQL = "SELECT SUM(damage_stem) AS totalDamageStem FROM regime65 WHERE spgroup = 3";
 
 $result = mysqli_query($dbc, $DamageStemSpgroup3SQL);
 
@@ -365,7 +365,7 @@ if ($result) {
     $totalDamageStemSpgroup3 = $row['totalDamageStem'];
 }
 
-$DamageStemSpgroup4SQL = "SELECT SUM(damage_stem) AS totalDamageStem FROM regime50 WHERE spgroup = 4";
+$DamageStemSpgroup4SQL = "SELECT SUM(damage_stem) AS totalDamageStem FROM regime65 WHERE spgroup = 4";
 
 $result = mysqli_query($dbc, $DamageStemSpgroup4SQL);
 
@@ -374,7 +374,7 @@ if ($result) {
     $totalDamageStemSpgroup4 = $row['totalDamageStem'];
 }
 
-$DamageStemSpgroup5SQL = "SELECT SUM(damage_stem) AS totalDamageStem FROM regime50 WHERE spgroup = 5";
+$DamageStemSpgroup5SQL = "SELECT SUM(damage_stem) AS totalDamageStem FROM regime65 WHERE spgroup = 5";
 
 $result = mysqli_query($dbc, $DamageStemSpgroup5SQL);
 
@@ -383,7 +383,7 @@ if ($result) {
     $totalDamageStemSpgroup5 = $row['totalDamageStem'];
 }
 
-$DamageStemSpgroup6SQL = "SELECT SUM(damage_stem) AS totalDamageStem FROM regime50 WHERE spgroup = 6";
+$DamageStemSpgroup6SQL = "SELECT SUM(damage_stem) AS totalDamageStem FROM regime65 WHERE spgroup = 6";
 
 $result = mysqli_query($dbc, $DamageStemSpgroup6SQL);
 
@@ -392,7 +392,7 @@ if ($result) {
     $totalDamageStemSpgroup6 = $row['totalDamageStem'];
 }
 
-$DamageStemSpgroup7SQL = "SELECT SUM(damage_stem) AS totalDamageStem FROM regime50 WHERE spgroup = 7";
+$DamageStemSpgroup7SQL = "SELECT SUM(damage_stem) AS totalDamageStem FROM regime65 WHERE spgroup = 7";
 
 $result = mysqli_query($dbc, $DamageStemSpgroup7SQL);
 
@@ -403,7 +403,7 @@ if ($result) {
 
 
 /*-------------------------------  Growth30 ---------------------------------------*/
-$Growth30Spgroup1SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM regime50 WHERE spgroup = 1";
+$Growth30Spgroup1SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM regime65 WHERE spgroup = 1";
 
 $result = mysqli_query($dbc, $Growth30Spgroup1SQL);
 
@@ -412,7 +412,7 @@ if ($result) {
     $totalGrowth30Spgroup1 = $row['totalGrowth30']/10000;
 }
 
-$Growth30Spgroup2SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM regime50 WHERE spgroup = 2";
+$Growth30Spgroup2SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM regime65 WHERE spgroup = 2";
 
 $result = mysqli_query($dbc, $Growth30Spgroup2SQL);
 
@@ -421,7 +421,7 @@ if ($result) {
     $totalGrowth30Spgroup2 = $row['totalGrowth30']/10000;
 }
 
-$Growth30Spgroup3SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM regime50 WHERE spgroup = 3";
+$Growth30Spgroup3SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM regime65 WHERE spgroup = 3";
 
 $result = mysqli_query($dbc, $Growth30Spgroup3SQL);
 
@@ -430,7 +430,7 @@ if ($result) {
     $totalGrowth30Spgroup3 = $row['totalGrowth30']/10000;
 }
 
-$Growth30Spgroup4SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM regime50 WHERE spgroup = 4";
+$Growth30Spgroup4SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM regime65 WHERE spgroup = 4";
 
 $result = mysqli_query($dbc, $Growth30Spgroup4SQL);
 
@@ -439,7 +439,7 @@ if ($result) {
     $totalGrowth30Spgroup4 = $row['totalGrowth30']/10000;
 }
 
-$Growth30Spgroup5SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM regime50 WHERE spgroup = 5";
+$Growth30Spgroup5SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM regime65 WHERE spgroup = 5";
 
 $result = mysqli_query($dbc, $Growth30Spgroup5SQL);
 
@@ -448,7 +448,7 @@ if ($result) {
     $totalGrowth30Spgroup5 = $row['totalGrowth30']/10000;
 }
 
-$Growth30Spgroup6SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM regime50 WHERE spgroup = 6";
+$Growth30Spgroup6SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM regime65 WHERE spgroup = 6";
 
 $result = mysqli_query($dbc, $Growth30Spgroup6SQL);
 
@@ -457,7 +457,7 @@ if ($result) {
     $totalGrowth30Spgroup6 = $row['totalGrowth30']/10000;
 }
 
-$Growth30Spgroup7SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM regime50 WHERE spgroup = 7";
+$Growth30Spgroup7SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM regime65 WHERE spgroup = 7";
 
 $result = mysqli_query($dbc, $Growth30Spgroup7SQL);
 
@@ -467,7 +467,7 @@ if ($result) {
 }
 
 /*-------------------------------  Production30  ---------------------------------------*/
-$Production30Spgroup1SQL = "SELECT SUM(Production30) AS totalProduction30 FROM regime50 WHERE spgroup = 1";
+$Production30Spgroup1SQL = "SELECT SUM(Production30) AS totalProduction30 FROM regime65 WHERE spgroup = 1";
 
 $result = mysqli_query($dbc, $Production30Spgroup1SQL);
 
@@ -476,7 +476,7 @@ if ($result) {
     $totalProduction30Spgroup1 = $row['totalProduction30']/10000;
 }
 
-$Production30Spgroup2SQL = "SELECT SUM(Production30) AS totalProduction30 FROM regime50 WHERE spgroup = 2";
+$Production30Spgroup2SQL = "SELECT SUM(Production30) AS totalProduction30 FROM regime65 WHERE spgroup = 2";
 
 $result = mysqli_query($dbc, $Production30Spgroup2SQL);
 
@@ -485,7 +485,7 @@ if ($result) {
     $totalProduction30Spgroup2 = $row['totalProduction30']/10000;
 }
 
-$Production30Spgroup3SQL = "SELECT SUM(Production30) AS totalProduction30 FROM regime50 WHERE spgroup = 3";
+$Production30Spgroup3SQL = "SELECT SUM(Production30) AS totalProduction30 FROM regime65 WHERE spgroup = 3";
 
 $result = mysqli_query($dbc, $Production30Spgroup3SQL);
 
@@ -494,7 +494,7 @@ if ($result) {
     $totalProduction30Spgroup3 = $row['totalProduction30']/10000;
 }
 
-$Production30Spgroup4SQL = "SELECT SUM(Production30) AS totalProduction30 FROM regime50 WHERE spgroup = 4";
+$Production30Spgroup4SQL = "SELECT SUM(Production30) AS totalProduction30 FROM regime65 WHERE spgroup = 4";
 
 $result = mysqli_query($dbc, $Production30Spgroup4SQL);
 
@@ -503,7 +503,7 @@ if ($result) {
     $totalProduction30Spgroup4 = $row['totalProduction30']/10000;
 }
 
-$Production30Spgroup5SQL = "SELECT SUM(Production30) AS totalProduction30 FROM regime50 WHERE spgroup = 5";
+$Production30Spgroup5SQL = "SELECT SUM(Production30) AS totalProduction30 FROM regime65 WHERE spgroup = 5";
 
 $result = mysqli_query($dbc, $Production30Spgroup5SQL);
 
@@ -512,7 +512,7 @@ if ($result) {
     $totalProduction30Spgroup5 = $row['totalProduction30']/10000;
 }
 
-$Production30Spgroup6SQL = "SELECT SUM(Production30) AS totalProduction30 FROM regime50 WHERE spgroup = 6";
+$Production30Spgroup6SQL = "SELECT SUM(Production30) AS totalProduction30 FROM regime65 WHERE spgroup = 6";
 
 $result = mysqli_query($dbc, $Production30Spgroup6SQL);
 
@@ -521,7 +521,7 @@ if ($result) {
     $totalProduction30Spgroup6 = $row['totalProduction30']/10000;
 }
 
-$Production30Spgroup7SQL = "SELECT SUM(Production30) AS totalProduction30 FROM regime50 WHERE spgroup = 7";
+$Production30Spgroup7SQL = "SELECT SUM(Production30) AS totalProduction30 FROM regime65 WHERE spgroup = 7";
 
 $result = mysqli_query($dbc, $Production30Spgroup7SQL);
 
@@ -539,7 +539,7 @@ if ($result) {
 <body>
     <div class="container">
         <header>
-            <h1>Summary Regime 50</h1>
+            <h1>Summary Regim 65</h1>
         </header>
         <main>
         <table border="1" width="100%">
