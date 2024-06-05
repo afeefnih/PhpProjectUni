@@ -409,7 +409,7 @@ $result = mysqli_query($dbc, $Growth30Spgroup1SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalGrowth30Spgroup1 = $row['totalGrowth30']/10000;
+    $totalGrowth30Spgroup1 = $row['totalGrowth30'];
 }
 
 $Growth30Spgroup2SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM regime65 WHERE spgroup = 2";
@@ -418,7 +418,7 @@ $result = mysqli_query($dbc, $Growth30Spgroup2SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalGrowth30Spgroup2 = $row['totalGrowth30']/10000;
+    $totalGrowth30Spgroup2 = $row['totalGrowth30'];
 }
 
 $Growth30Spgroup3SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM regime65 WHERE spgroup = 3";
@@ -427,7 +427,7 @@ $result = mysqli_query($dbc, $Growth30Spgroup3SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalGrowth30Spgroup3 = $row['totalGrowth30']/10000;
+    $totalGrowth30Spgroup3 = $row['totalGrowth30'];
 }
 
 $Growth30Spgroup4SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM regime65 WHERE spgroup = 4";
@@ -436,7 +436,7 @@ $result = mysqli_query($dbc, $Growth30Spgroup4SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalGrowth30Spgroup4 = $row['totalGrowth30']/10000;
+    $totalGrowth30Spgroup4 = $row['totalGrowth30'];
 }
 
 $Growth30Spgroup5SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM regime65 WHERE spgroup = 5";
@@ -445,7 +445,7 @@ $result = mysqli_query($dbc, $Growth30Spgroup5SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalGrowth30Spgroup5 = $row['totalGrowth30']/10000;
+    $totalGrowth30Spgroup5 = $row['totalGrowth30'];
 }
 
 $Growth30Spgroup6SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM regime65 WHERE spgroup = 6";
@@ -454,7 +454,7 @@ $result = mysqli_query($dbc, $Growth30Spgroup6SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalGrowth30Spgroup6 = $row['totalGrowth30']/10000;
+    $totalGrowth30Spgroup6 = $row['totalGrowth30'];
 }
 
 $Growth30Spgroup7SQL = "SELECT SUM(Growth30) AS totalGrowth30 FROM regime65 WHERE spgroup = 7";
@@ -463,7 +463,7 @@ $result = mysqli_query($dbc, $Growth30Spgroup7SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalGrowth30Spgroup7 = $row['totalGrowth30']/10000;
+    $totalGrowth30Spgroup7 = $row['totalGrowth30'];
 }
 
 /*-------------------------------  Production30  ---------------------------------------*/
@@ -473,7 +473,7 @@ $result = mysqli_query($dbc, $Production30Spgroup1SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalProduction30Spgroup1 = $row['totalProduction30']/10000;
+    $totalProduction30Spgroup1 = $row['totalProduction30'];
 }
 
 $Production30Spgroup2SQL = "SELECT SUM(Production30) AS totalProduction30 FROM regime65 WHERE spgroup = 2";
@@ -482,7 +482,7 @@ $result = mysqli_query($dbc, $Production30Spgroup2SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalProduction30Spgroup2 = $row['totalProduction30']/10000;
+    $totalProduction30Spgroup2 = $row['totalProduction30'];
 }
 
 $Production30Spgroup3SQL = "SELECT SUM(Production30) AS totalProduction30 FROM regime65 WHERE spgroup = 3";
@@ -491,7 +491,7 @@ $result = mysqli_query($dbc, $Production30Spgroup3SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalProduction30Spgroup3 = $row['totalProduction30']/10000;
+    $totalProduction30Spgroup3 = $row['totalProduction30'];
 }
 
 $Production30Spgroup4SQL = "SELECT SUM(Production30) AS totalProduction30 FROM regime65 WHERE spgroup = 4";
@@ -500,7 +500,7 @@ $result = mysqli_query($dbc, $Production30Spgroup4SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalProduction30Spgroup4 = $row['totalProduction30']/10000;
+    $totalProduction30Spgroup4 = $row['totalProduction30'];
 }
 
 $Production30Spgroup5SQL = "SELECT SUM(Production30) AS totalProduction30 FROM regime65 WHERE spgroup = 5";
@@ -509,7 +509,7 @@ $result = mysqli_query($dbc, $Production30Spgroup5SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalProduction30Spgroup5 = $row['totalProduction30']/10000;
+    $totalProduction30Spgroup5 = $row['totalProduction30'];
 }
 
 $Production30Spgroup6SQL = "SELECT SUM(Production30) AS totalProduction30 FROM regime65 WHERE spgroup = 6";
@@ -518,7 +518,7 @@ $result = mysqli_query($dbc, $Production30Spgroup6SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalProduction30Spgroup6 = $row['totalProduction30']/10000;
+    $totalProduction30Spgroup6 = $row['totalProduction30'];
 }
 
 $Production30Spgroup7SQL = "SELECT SUM(Production30) AS totalProduction30 FROM regime65 WHERE spgroup = 7";
@@ -527,7 +527,7 @@ $result = mysqli_query($dbc, $Production30Spgroup7SQL);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
-    $totalProduction30Spgroup7 = $row['totalProduction30']/10000;
+    $totalProduction30Spgroup7 = $row['totalProduction30'];
 }
 
 

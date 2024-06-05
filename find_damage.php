@@ -15,9 +15,9 @@ mysqli_set_charset($dbc, 'utf8');
 
 // Perform your calculations here using the existing data in the database
 
-// For example, you can retrieve data from the 'regime60' table and perform calculations:
+// For example, you can retrieve data from the 'regime65' table and perform calculations:
 // Construct the SQL query to retrieve data for all "Cut" trees
-$sql = "SELECT TreeNum, Cut_Angle, x ,y, StemHeight FROM regime60 WHERE status_tree = 'Cut'";
+$sql = "SELECT TreeNum, Cut_Angle, x ,y, StemHeight FROM regime65 WHERE status_tree = 'Cut'";
 $result = mysqli_query($dbc, $sql);
 
 // Check if the query executed successfully
@@ -43,25 +43,25 @@ while ($row = mysqli_fetch_assoc($result)) {
         $x_upper = $x0 + $stemHeight + $buffer;
         $y_upper = $y0 + $stemHeight + $buffer;
 
-        $count_query = "SELECT x, y FROM regime60 WHERE status_tree != 'Cut' AND x > $x0 AND x < $x_upper AND y > $y0 AND y < $y_upper";
+        $count_query = "SELECT x, y FROM regime65 WHERE status_tree != 'Cut' AND x > $x0 AND x < $x_upper AND y > $y0 AND y < $y_upper";
     }
     elseif ($cutAngle >= 90 && $cutAngle < 180) {
         // Quadrant II: 90 - 180 degrees
         $x_upper = $x0 + $stemHeight + $buffer;
         $y_upper = $y0 - $stemHeight - $buffer;
-        $count_query2 = "SELECT x, y FROM regime60 WHERE status_tree != 'Cut' AND x > $x0 AND x < $x_upper AND y > $y0 AND y < $y_upper";
+        $count_query2 = "SELECT x, y FROM regime65 WHERE status_tree != 'Cut' AND x > $x0 AND x < $x_upper AND y > $y0 AND y < $y_upper";
     }
     elseif ($cutAngle >= 180 && $cutAngle < 270) {
         // Quadrant III: 180 - 270 degrees
         $x_upper = $x0 - $stemHeight - $buffer;
         $y_upper = $y0 - $stemHeight - $buffer;
-        $count_query3 = "SELECT x, y FROM regime60 WHERE status_tree != 'Cut' AND x > $x0 AND x < $x_upper AND y > $y0 AND y < $y_upper";
+        $count_query3 = "SELECT x, y FROM regime65 WHERE status_tree != 'Cut' AND x > $x0 AND x < $x_upper AND y > $y0 AND y < $y_upper";
 
     } elseif ($cutAngle >= 270 && $cutAngle < 360) {
         // Quadrant IV: 270 - 360 degrees
         $x_upper = $x0 - $stemHeight - $buffer;
         $y_upper = $y0 + $stemHeight + $buffer;
-        $count_query4 = "SELECT x, y FROM regime60 WHERE status_tree != 'Cut' AND x > $x0 AND x < $x_upper AND y > $y0 AND y < $y_upper";
+        $count_query4 = "SELECT x, y FROM regime65 WHERE status_tree != 'Cut' AND x > $x0 AND x < $x_upper AND y > $y0 AND y < $y_upper";
     }
 
     // Ensure count_query is not empty before executing the query
@@ -97,7 +97,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 $categoryDamage = 1 ;
 
                 // Insert the victim data into the database
-                $insert_query = "INSERT INTO damagetree60 (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                $insert_query = "INSERT INTO damagetree65 (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
                 $result3 = mysqli_query($dbc, $insert_query);
                 if (!$result3) {
                     die('Error inserting victim data: ' . mysqli_error($dbc));
@@ -113,7 +113,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 $categoryDamage = 2;
             
                 // Insert the victim data into the database
-                $insert_query = "INSERT INTO damagetree60 (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                $insert_query = "INSERT INTO damagetree65 (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
                 $result3 = mysqli_query($dbc, $insert_query);
                 if (!$result3) {
                     die('Error inserting victim data: ' . mysqli_error($dbc));
@@ -157,7 +157,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 
             
                 // Insert the victim data into the database
-                $insert_query = "INSERT INTO damagetree60 (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                $insert_query = "INSERT INTO damagetree65 (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
                 $result3 = mysqli_query($dbc, $insert_query);
                 if (!$result3) {
                     die('Error inserting victim data: ' . mysqli_error($dbc));
@@ -174,7 +174,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 
             
                 // Insert the victim data into the database
-                $insert_query = "INSERT INTO damagetree60 (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                $insert_query = "INSERT INTO damagetree65 (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
                 $result3 = mysqli_query($dbc, $insert_query);
                 if (!$result3) {
                     die('Error inserting victim data: ' . mysqli_error($dbc));
@@ -219,7 +219,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                
             
                 // Insert the victim data into the database
-                $insert_query = "INSERT INTO damagetree60 (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                $insert_query = "INSERT INTO damagetree65 (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
                 $result3 = mysqli_query($dbc, $insert_query);
                 if (!$result3) {
                     die('Error inserting victim data: ' . mysqli_error($dbc));
@@ -237,7 +237,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             
             
                 // Insert the victim data into the database
-                $insert_query = "INSERT INTO damagetree60 (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                $insert_query = "INSERT INTO damagetree65 (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
                 $result3 = mysqli_query($dbc, $insert_query);
                 if (!$result3) {
                     die('Error inserting victim data: ' . mysqli_error($dbc));
@@ -281,7 +281,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             
             
                 // Insert the victim data into the database
-                $insert_query = "INSERT INTO damagetree60 (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage) ";
+                $insert_query = "INSERT INTO damagetree65 (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage) ";
                 $result3 = mysqli_query($dbc, $insert_query);
                 if (!$result3) {
                     die('Error inserting victim data: ' . mysqli_error($dbc));
@@ -298,7 +298,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 
             
                 // Insert the victim data into the database
-                $insert_query = "INSERT INTO damagetree60 (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
+                $insert_query = "INSERT INTO damagetree65 (cut_tree, victim, category_damage) VALUES ('$cut_tree_coordinate', '$victim_coordinate', $categoryDamage)";
                 $result3 = mysqli_query($dbc, $insert_query);
                 if (!$result3) {
                     die('Error inserting victim data: ' . mysqli_error($dbc));

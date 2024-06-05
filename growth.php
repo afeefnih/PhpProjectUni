@@ -39,7 +39,7 @@ if (mysqli_num_rows($result) > 0) {
 
                 // Insert query
                 // use this code first
-                $sql1 = "UPDATE newforestori SET Diameter30 = '$newDiameter', Growth30 = '$volume30' WHERE Id = '$id' AND status_tree != 'Cut' AND Damage_stem = 0 ";
+                $sql1 = "UPDATE regime65 SET Diameter30 = '$newDiameter', Growth30 = '$volume30' WHERE Id = '$id' AND status_tree != 'Cut' AND Damage_stem = 0 ";
 
                 // if the above code run error, use the below code
                 // use the code one by one
