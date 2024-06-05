@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forest Simulation</title>
+    <link rel="stylesheet" href="../forest/styles.css">
+    <style>
+        canvas { border: 1px solid black; }
+        .buttons {
+            margin-top: 10px;
+        }
+        button {
+            margin-right: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        #tooltip {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px;
+            border-radius: 3px;
+            visibility: hidden;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div w3-include-html="../forest/header.html"></div>
+    <h2>Tree Distribution 65</h2>
+    <div class="box">
+        <canvas id="forestCanvas" width="1000" height="1000"></canvas>
+        <div id="tooltip"></div>
+        <div class="buttons">
+            <button id="zoomInBtn">Zoom In</button>
+            <button id="zoomOutBtn">Zoom Out</button>
+        </div>
+    </div>
+    <div w3-include-html="../forest/footer.html"></div>
+
+    <script>
+        function includeHTML() {
+            var z, i, elmnt, file, xhttp;
+            /* Loop through a collection of all HTML elements: */
+            z = document.getElementsByTagName("*");
+            for (i = 0; i < z.length; i++) {
+                elmnt = z[i];
+                /* Search for elements with a certain attribute: */
+                file = elmnt.getAttribute("w3-include-html");
+                if (file) {
+                    /* Make an HTTP request using the attribute value as the file name: */
+                    xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4) {
+                            if (this.status == 200) {
+                                elmnt.innerHTML = this.responseText;
+                            }
+                            if (this.status == 404) {
+                                elmnt.innerHTML = "Page not found.";
+                            }
+                            /* Remove the attribute and call this function once more: */
+                            elmnt.removeAttribute("w3-include-html");
+                            includeHTML();
+                        }
+                    }
+                    xhttp.open("GET", file, true);
+                    xhttp.send();
+                    /* Exit the function to allow the recursive call: */
+                    return;
+                }
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            includeHTML();
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

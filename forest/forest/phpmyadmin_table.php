@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>phpMyAdmin Table</title>
-        <?php include 'header.html';?>
-    <style>
-        <?php include 'styles.css'; ?>
-    </style>
+        <?php include '../forest/header.html';?>
+    <link rel="stylesheet" href="../forest/styles.css">
 </head>
 <body class="phpmyadmin">
     <div class="container">
@@ -79,6 +77,6 @@
             ?>
         </main>
     </div>
-    <?php include 'footer.html';?>
+    <?php include '../forest/footer.html';?>
 </body>
 </html>

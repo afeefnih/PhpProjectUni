@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stand Table</title>
-        <?php include 'header.html';?>
-    <style>
-        <?php include 'styles.css'; ?>
-    </style>
+        <?php include '../forest/header.html';?>
+    <link rel="stylesheet" href="../forest/styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -62,6 +60,7 @@
 
 
     </style>
+
     <?php
 
 DEFINE ('DB_USER', 'root');

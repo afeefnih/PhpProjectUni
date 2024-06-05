@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tree Data</title>
-    <?php include 'header.html';?>
+    <?php include '../forest/header.html';?>
     <style>
-        <?php include 'styles.css'; ?>
+        <?php include '../forest/styles.css'; ?>
     </style>
     <style>
         table {

@@ -1,13 +1,12 @@
+<?php include '../forest/header.html';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stand Table</title>
-        <?php include 'header.html';?>
-    <style>
-        <?php include 'styles.css'; ?>
-    </style>
+    
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -41,7 +40,6 @@
         h1 {
             margin-top: 0;
         }
-
         table {
             width: 100%;
             border-collapse: collapse;
@@ -59,8 +57,9 @@
         tr:hover {
             background-color: #f5f5f5;
         }
-
     </style>
+    <link rel="stylesheet" href="../forest/styles.css">
+</head>
     <?php
 
     DEFINE ('DB_USER', 'root');
